@@ -1,0 +1,106 @@
+.sidebar {
+  background-color: beige;
+  flex: 1;
+  min-height: 100vh;
+  position: relative;
+
+  .top {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 0.5px solid rgb(226, 226, 226);
+
+    .logo {
+      font-size: 20px;
+      font-weight: bold;
+      color: rgb(0, 128, 0);
+    }
+  }
+  .center {
+    padding: 18px 10px;
+    color: rgb(0, 56, 0);
+
+    ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+
+      .page {
+        display: flex;
+        align-items: center;
+        padding: 8px;
+
+        &:hover {
+          background-color: rgba(0, 128, 0, 0.267);
+          cursor: pointer;
+        }
+
+        .icon {
+          font-size: 20px;
+          margin-right: 6px;
+        }
+      }
+
+      hr {
+        display: block;
+        height: 1px;
+        border: 0;
+        border-top: 0.5px solid rgba(226, 226, 226, 0.836);
+        margin: 18px 0 17px 0;
+      }
+    }
+  }
+  .bottom {
+    padding: 0 10px;
+
+    hr {
+      display: block;
+      height: 1px;
+      border: 0;
+      border-top: 0.5px solid rgba(226, 226, 226, 0.836);
+      margin: 6px 0 5px 0;
+    }
+
+    .colors {
+      display: flex;
+      align-items: center;
+      margin: 25px 10px;
+
+      .colorOption {
+        width: 18px;
+        height: 18px;
+        border-radius: 5px;
+        border: 1.8px solid gray;
+        margin-right: 10px;
+        cursor: pointer;
+
+        &:nth-child(1) {
+          background-color: beige;
+        }
+        &:nth-child(2) {
+          background-color: rgba(30, 145, 30, 0.685);
+        }
+        &:nth-child(3) {
+          background-color: pink;
+        }
+      }
+    }
+  }
+
+  footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 30px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    span {
+      font-size: 14px;
+      color: rgba(0, 128, 0, 0.68);
+    }
+  }
+}
