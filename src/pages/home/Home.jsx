@@ -28,11 +28,10 @@ const Home = () => {
           <CalendarW />
         </div>
         <div className="third">
-          Investments
           <Investments title="CRYPTO" name="" amount="" currency="" />
-          <Investments title="" name="" amount="" currency="" />
-          <Investments title="" name="" amount="" currency="" />
-          <Investments title="" name="" amount="" currency="" />
+          <Investments title="STOCKS" name="" amount="" currency="" />
+          <Investments title="PRECIOUS METALS" name="" amount="" currency="" />
+          <Investments title="OTHER" name="" amount="" currency="" />
         </div>
         <div className="fourth">Google Calendar API || (MUI?) calendar</div>
       </div>
