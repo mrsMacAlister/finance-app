@@ -11,47 +11,66 @@ import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined
 import CollectionsBookmarkOutlinedIcon from "@mui/icons-material/CollectionsBookmarkOutlined";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
+import { Link } from "react-router-dom";
 
 const Sidebar = () => {
   return (
     <div className="sidebar">
       <div className="top">
-        <span className="logo">My Money 🪙</span>
+        <Link to="/" className="link">
+          <span className="logo">My Money 🪙</span>{" "}
+        </Link>
       </div>
       <div className="center">
         <ul>
-          <li className="page">
-            <DashboardIcon className="icon" />
-            <span>Dashboard</span>
-          </li>
-          <li className="page">
-            <AccountBalanceWalletOutlinedIcon className="icon" />
-            <span>Transactions</span>
-          </li>
-          <li className="page">
-            <CalculateOutlinedIcon className="icon" />
-            <span>Budgeting</span>
-          </li>
-          <li className="page">
-            <SavingsOutlinedIcon className="icon" />
-            <span>Savings</span>
-          </li>
-          <li className="page">
-            <AccountBalanceOutlinedIcon className="icon" />
-            <span>Loans</span>
-          </li>
-          <li className="page">
-            <CurrencyBitcoinOutlinedIcon className="icon" />
-            <span>Valuables</span>
-          </li>
-          <li className="page">
-            <CalendarMonthOutlinedIcon className="icon" />
-            <span>Calendar</span>
-          </li>
-          <li className="page">
-            <CollectionsBookmarkOutlinedIcon className="icon" />
-            <span>Resources</span>
-          </li>
+          <Link to="/" className="link">
+            <li className="page">
+              <DashboardIcon className="icon" />
+              <span>Dashboard</span>
+            </li>
+          </Link>
+          <Link to="/transactions" className="link">
+            <li className="page">
+              <AccountBalanceWalletOutlinedIcon className="icon" />
+              <span>Transactions</span>
+            </li>
+          </Link>
+          <Link to="/budgeting" className="link">
+            <li className="page">
+              <CalculateOutlinedIcon className="icon" />
+              <span>Budgeting</span>
+            </li>
+          </Link>
+          <Link to="/savings" className="link">
+            <li className="page">
+              <SavingsOutlinedIcon className="icon" />
+              <span>Savings</span>
+            </li>
+          </Link>
+          <Link to="/loans" className="link">
+            <li className="page">
+              <AccountBalanceOutlinedIcon className="icon" />
+              <span>Loans</span>
+            </li>
+          </Link>
+          <Link to="/valuables" className="link">
+            <li className="page">
+              <CurrencyBitcoinOutlinedIcon className="icon" />
+              <span>Valuables</span>
+            </li>
+          </Link>
+          <Link to="/calendar" className="link">
+            <li className="page">
+              <CalendarMonthOutlinedIcon className="icon" />
+              <span>Calendar</span>
+            </li>
+          </Link>
+          <Link to="/resources" className="link">
+            <li className="page">
+              <CollectionsBookmarkOutlinedIcon className="icon" />
+              <span>Resources</span>
+            </li>
+          </Link>
           <hr />
           <li className="page">
             <AccountCircleOutlinedIcon className="icon" />

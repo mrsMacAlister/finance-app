@@ -1,3 +1,44 @@
 .transactions {
-  font-size: 10px;
+  display: flex;
+
+  .transactionsContainer {
+    flex: 6;
+
+    .main {
+      //background-color: rgba(173, 16, 16, 0.856);
+      display: flex;
+
+      .left {
+        background-color: yellow;
+        flex: 3;
+        -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
+        box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
+        border-radius: 10px;
+        margin: 20px;
+        padding: 20px;
+      }
+
+      .right {
+        flex: 1;
+
+        .top {
+          background-color: pink;
+          -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
+          box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
+          border-radius: 10px;
+          margin: 20px 20px 0 0;
+          padding: 20px;
+        }
+
+        .bottom {
+          background-color: salmon;
+          -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
+          box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
+          border-radius: 10px;
+          margin: 20px 20px 20px 0;
+          padding: 20px;
+        }
+      }
+    }
+  }
 }
