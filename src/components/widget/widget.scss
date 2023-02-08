@@ -9,4 +9,19 @@
   -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
   box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
   border-radius: 10px;
+
+  .title {
+    font-size: 13px;
+    font-weight: bold;
+  }
+
+  .amount {
+    font-size: 18px;
+    font-weight: bold;
+    padding: 10px;
+  }
+
+  .goal {
+    font-size: 13px;
+  }
 }

@@ -53,10 +53,10 @@ const Sidebar = () => {
               <span>Loans</span>
             </li>
           </Link>
-          <Link to="/valuables" className="link">
+          <Link to="/investments" className="link">
             <li className="page">
               <CurrencyBitcoinOutlinedIcon className="icon" />
-              <span>Valuables</span>
+              <span>Investments</span>
             </li>
           </Link>
           <Link to="/calendar" className="link">

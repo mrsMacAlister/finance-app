@@ -5,7 +5,8 @@ import Transactions from "./pages/transactions/Transactions";
 import Budgeting from "./pages/budgeting/Budgeting";
 import Savings from "./pages/savings/Savings";
 import Loans from "./pages/loans/Loans";
-import Valuables from "./pages/valuables/Valuables";
+import Investments from "./pages/investments/Investments";
+import Calendar from "./pages/calendar/Calendar";
 import Resources from "./pages/resources/Resources";
 
 function App() {
@@ -16,11 +17,12 @@ function App() {
           <Route path="/">
             <Route index element={<Home />} />
             <Route path="login" element={<Login />} />
-            <Route path="transactions" element={<Transactions />} />{" "}
+            <Route path="transactions" element={<Transactions />} />
             <Route path="budgeting" element={<Budgeting />} />
             <Route path="savings" element={<Savings />} />
             <Route path="loans" element={<Loans />} />
-            <Route path="valuables" element={<Valuables />} />
+            <Route path="investments" element={<Investments />} />
+            <Route path="calendar" element={<Calendar />} />
             <Route path="resources" element={<Resources />} />
             <Route>
               <Route />

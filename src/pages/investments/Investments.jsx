@@ -1,12 +1,12 @@
-import "./resources.scss";
+import "./investments.scss";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 
-const Resources = () => {
+const Investments = () => {
   return (
-    <div className="resources">
+    <div className="investments">
       <Sidebar />
-      <div className="resourcesContainer">
+      <div className="investmentsContainer">
         <Navbar />
         <div className="construction">
           <h2>This page is still under construction.</h2>
@@ -17,4 +17,4 @@ const Resources = () => {
   );
 };
 
-export default Resources;
+export default Investments;

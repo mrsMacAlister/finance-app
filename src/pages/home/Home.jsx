@@ -6,7 +6,7 @@ import Chart from "../../components/chart/Chart";
 import Piggybank from "../../components/piggybank/Piggybank";
 import Debt from "../../components/debt/Debt";
 import CalendarW from "../../components/calendarW/CalendarW";
-import Investments from "../../components/investments/Investments";
+import InvestmentsW from "../../components/investmentsW/InvestmentsW";
 
 const Home = () => {
   return (
@@ -28,10 +28,10 @@ const Home = () => {
           <CalendarW />
         </div>
         <div className="third">
-          <Investments title="CRYPTO" name="" amount="" currency="" />
-          <Investments title="STOCKS" name="" amount="" currency="" />
-          <Investments title="PRECIOUS METALS" name="" amount="" currency="" />
-          <Investments title="OTHER" name=" " amount="" currency="" />
+          <InvestmentsW title="CRYPTO" name="" amount="" currency="" />
+          <InvestmentsW title="STOCKS" name="" amount="" currency="" />
+          <InvestmentsW title="PRECIOUS METALS" name="" amount="" currency="" />
+          <InvestmentsW title="OTHER" name=" " amount="" currency="" />
         </div>
         <div className="fourth">Google Calendar API || (MUI?) calendar</div>
       </div>
