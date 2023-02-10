@@ -1,6 +1,9 @@
 import "./transactions.scss";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
+//import transactionsRows from "../../components/transactionsRows/transactionsRows";
+import { useContext } from "react";
+import { TransactionsSourceContext } from "../../TransactionsSourceContext";
 
 import * as React from "react";
 import Table from "@mui/material/Table";
@@ -11,19 +14,21 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 
-function createData(date, description, category, method, income, outcome) {
+/*function createData(date, description, category, method, income, outcome) {
   return { date, description, category, method, income, outcome };
-}
+}*/
 
-const rows = [
+/*const rows = [
   createData("05 / 08 / 2023", "Frozen yoghurt", "food", "card", 24, 4.0),
   createData("Ice cream sandwich", 237, 9.0, 37, 4.3),
   createData("Eclair", 262, 16.0, 24, 6.0),
   createData("Cupcake", 305, 3.7, 67, 4.3),
   createData("Gingerbread", 356, 16.0, 49, 3.9),
-];
+];*/
 
 const Transactions = () => {
+  const { rows } = useContext(TransactionsSourceContext);
+
   return (
     <div className="transactions">
       <Sidebar />
@@ -51,7 +56,7 @@ const Transactions = () => {
                 <TableBody>
                   {rows.map((row) => (
                     <TableRow
-                      key={row.name}
+                      key={row.id}
                       sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                     >
                       <TableCell component="th" scope="row">
@@ -59,7 +64,7 @@ const Transactions = () => {
                       </TableCell>
                       <TableCell align="right">{row.description}</TableCell>
                       <TableCell align="right">{row.category}</TableCell>
-                      <TableCell align="right">{row.method}</TableCell>
+                      <TableCell align="right">{row.paymentM}</TableCell>
                       <TableCell align="right">{row.income}</TableCell>
                       <TableCell align="right">{row.outcome}</TableCell>
                     </TableRow>
