@@ -10,6 +10,11 @@
   align-items: center;
   gap: 20px;
 
+  .title {
+    font-size: 13px;
+    font-weight: bold;
+  }
+
   .investment {
     display: flex;
   }

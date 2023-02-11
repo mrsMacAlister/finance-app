@@ -45,12 +45,12 @@ const Transactions = () => {
               >
                 <TableHead>
                   <TableRow>
-                    <TableCell>Date</TableCell>
-                    <TableCell align="right">Description</TableCell>
-                    <TableCell align="right">Category</TableCell>
-                    <TableCell align="right">Payment Method</TableCell>
-                    <TableCell align="right">Income&nbsp;($+)</TableCell>
-                    <TableCell align="right">Outcome&nbsp;($-)</TableCell>
+                    <TableCell align="center">Date</TableCell>
+                    <TableCell align="center">Description</TableCell>
+                    <TableCell align="center">Category</TableCell>
+                    <TableCell align="center">Payment Method</TableCell>
+                    <TableCell align="center">Income&nbsp;($+)</TableCell>
+                    <TableCell align="center">Outcome&nbsp;($-)</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -59,13 +59,13 @@ const Transactions = () => {
                       key={row.id}
                       sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                     >
-                      <TableCell component="th" scope="row">
+                      <TableCell align="center" component="th" scope="row">
                         {row.date}
                       </TableCell>
-                      <TableCell align="right">{row.description}</TableCell>
-                      <TableCell align="right">{row.category}</TableCell>
-                      <TableCell align="right">{row.paymentM}</TableCell>
-                      <TableCell align="right">{row.income}</TableCell>
+                      <TableCell align="left">{row.description}</TableCell>
+                      <TableCell align="center">{row.category}</TableCell>
+                      <TableCell align="center">{row.paymentM}</TableCell>
+                      <TableCell align="center">{row.income}</TableCell>
                       <TableCell align="right">{row.outcome}</TableCell>
                     </TableRow>
                   ))}

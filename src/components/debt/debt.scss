@@ -10,10 +10,31 @@
   align-items: center;
   gap: 20px;
 
+  .title {
+    font-size: 13px;
+    font-weight: bold;
+  }
+
   .progressbar {
     width: 120px;
     height: 120px;
-    stroke: gray;
-    text-align: center;
+
+    .CircularProgressbar-path {
+      stroke: green;
+    }
+    .CircularProgressbar-trail {
+      stroke: red;
+    }
+    .CircularProgressbar-text {
+      fill: blue;
+    }
+    //background doesn't work
+    .CircularProgressbar-background {
+      fill: rgba(0, 0, 0, 0.5);
+    }
+  }
+
+  .goal {
+    font-size: 13px;
   }
 }

@@ -8,30 +8,33 @@ import Loans from "./pages/loans/Loans";
 import Investments from "./pages/investments/Investments";
 import Calendar from "./pages/calendar/Calendar";
 import Resources from "./pages/resources/Resources";
+import { AppProvider } from "./TransactionsSourceContext";
 
 function App() {
   return (
-    <div className="App">
-      <BrowserRouter>
-        <Routes>
-          <Route path="/">
-            <Route index element={<Home />} />
-            <Route path="login" element={<Login />} />
-            <Route path="transactions" element={<Transactions />} />
-            <Route path="budgeting" element={<Budgeting />} />
-            <Route path="savings" element={<Savings />} />
-            <Route path="loans" element={<Loans />} />
-            <Route path="investments" element={<Investments />} />
-            <Route path="calendar" element={<Calendar />} />
-            <Route path="resources" element={<Resources />} />
-            <Route>
+    <AppProvider>
+      <div className="App">
+        <BrowserRouter>
+          <Routes>
+            <Route path="/">
+              <Route index element={<Home />} />
+              <Route path="login" element={<Login />} />
+              <Route path="transactions" element={<Transactions />} />
+              <Route path="budgeting" element={<Budgeting />} />
+              <Route path="savings" element={<Savings />} />
+              <Route path="loans" element={<Loans />} />
+              <Route path="investments" element={<Investments />} />
+              <Route path="calendar" element={<Calendar />} />
+              <Route path="resources" element={<Resources />} />
+              <Route>
+                <Route />
+              </Route>
               <Route />
             </Route>
-            <Route />
-          </Route>
-        </Routes>
-      </BrowserRouter>
-    </div>
+          </Routes>
+        </BrowserRouter>
+      </div>
+    </AppProvider>
   );
 }
 

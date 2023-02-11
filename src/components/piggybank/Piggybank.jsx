@@ -3,7 +3,7 @@ import "./piggybank.scss";
 const Piggybank = () => {
   return (
     <div className="piggybank">
-      <div className="title">Piggybank</div>
+      <div className="title">SAVINGS</div>
       <img
         src="https://www.svgrepo.com/show/253917/piggy-bank-euro.svg"
         alt=""

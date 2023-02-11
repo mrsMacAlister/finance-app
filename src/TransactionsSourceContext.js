@@ -56,13 +56,7 @@ export const AppProvider = (props) => {
   return (
     <TransactionsSourceContext.Provider
       value={{
-        id: state.id,
-        date: state.date,
-        description: state.description,
-        category: state.category,
-        paymentM: state.paymentM,
-        income: state.income,
-        outcome: state.outcome,
+        rows: state.rows,
         dispatch,
       }}
     >
@@ -70,3 +64,11 @@ export const AppProvider = (props) => {
     </TransactionsSourceContext.Provider>
   );
 };
+/*id: state.id,
+        date: state.date,
+        description: state.description,
+        category: state.category,
+        paymentM: state.paymentM,
+        income: state.income,
+        outcome: state.outcome,
+        dispatch, */

@@ -64,37 +64,39 @@ const off = gradientOffset();
 const Chart = ({ aspect }) => {
   return (
     <div className="chart">
-      Chart
-      <ResponsiveContainer aspect={aspect}>
-        <AreaChart
-          width={500}
-          height={400}
-          data={data}
-          margin={{
-            top: 10,
-            right: 30,
-            left: 0,
-            bottom: 0,
-          }}
-        >
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="Month" />
-          <YAxis />
-          <Tooltip />
-          <defs>
-            <linearGradient id="splitColor" x1="0" y1="0" x2="0" y2="1">
-              <stop offset={off} stopColor="green" stopOpacity={0.5} />
-              <stop offset={off} stopColor="red" stopOpacity={1} />
-            </linearGradient>
-          </defs>
-          <Area
-            type="monotone"
-            dataKey="Balance"
-            stroke="gray"
-            fill="url(#splitColor)"
-          />
-        </AreaChart>
-      </ResponsiveContainer>
+      <div className="title">CHART</div>
+      <div className="graph">
+        <ResponsiveContainer aspect={aspect}>
+          <AreaChart
+            width={500}
+            height={400}
+            data={data}
+            margin={{
+              top: 10,
+              right: 30,
+              left: 0,
+              bottom: 0,
+            }}
+          >
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="Month" />
+            <YAxis />
+            <Tooltip />
+            <defs>
+              <linearGradient id="splitColor" x1="0" y1="0" x2="0" y2="1">
+                <stop offset={off} stopColor="green" stopOpacity={0.5} />
+                <stop offset={off} stopColor="red" stopOpacity={1} />
+              </linearGradient>
+            </defs>
+            <Area
+              type="monotone"
+              dataKey="Balance"
+              stroke="gray"
+              fill="url(#splitColor)"
+            />
+          </AreaChart>
+        </ResponsiveContainer>
+      </div>
     </div>
   );
 };
