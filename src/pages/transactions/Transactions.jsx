@@ -1,19 +1,12 @@
 import "./transactions.scss";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
+import TransactionsTable from "../../components/transactionsTable/TransactionsTable";
+import TransactionsGrid from "../../components/transactionsTable/TransactionsGrid";
 //import transactionsRows from "../../components/transactionsRows/transactionsRows";
-import { useContext } from "react";
-import { TransactionsSourceContext } from "../../TransactionsSourceContext";
+/*
 
-import * as React from "react";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
-
+*/
 /*function createData(date, description, category, method, income, outcome) {
   return { date, description, category, method, income, outcome };
 }*/
@@ -27,7 +20,7 @@ import Paper from "@mui/material/Paper";
 ];*/
 
 const Transactions = () => {
-  const { rows } = useContext(TransactionsSourceContext);
+  //const { rows } = useContext(AppContext);
 
   return (
     <div className="transactions">
@@ -36,42 +29,9 @@ const Transactions = () => {
         <Navbar />
         <div className="main">
           <div className="left">
-            Table
-            <TableContainer component={Paper}>
-              <Table
-                sx={{ minWidth: 650 }}
-                size="small"
-                aria-label="a dense table"
-              >
-                <TableHead>
-                  <TableRow>
-                    <TableCell align="center">Date</TableCell>
-                    <TableCell align="center">Description</TableCell>
-                    <TableCell align="center">Category</TableCell>
-                    <TableCell align="center">Payment Method</TableCell>
-                    <TableCell align="center">Income&nbsp;($+)</TableCell>
-                    <TableCell align="center">Outcome&nbsp;($-)</TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {rows.map((row) => (
-                    <TableRow
-                      key={row.id}
-                      sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                    >
-                      <TableCell align="center" component="th" scope="row">
-                        {row.date}
-                      </TableCell>
-                      <TableCell align="left">{row.description}</TableCell>
-                      <TableCell align="center">{row.category}</TableCell>
-                      <TableCell align="center">{row.paymentM}</TableCell>
-                      <TableCell align="center">{row.income}</TableCell>
-                      <TableCell align="right">{row.outcome}</TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </TableContainer>
+            Table2
+            <TransactionsTable />
+            <TransactionsGrid />
           </div>
           <div className="right">
             <div className="top">Categories</div>
@@ -84,3 +44,7 @@ const Transactions = () => {
 };
 
 export default Transactions;
+
+/*
+
+*/
