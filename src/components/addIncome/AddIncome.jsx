@@ -2,14 +2,14 @@ import React, { useState, useContext } from "react";
 import { AppContext } from "../../context/AppContext";
 import { v4 as uuidv4 } from "uuid";
 
-const AddExpense = () => {
+const AddIncome = () => {
   const { dispatch } = useContext(AppContext);
 
   const [day, setDay] = useState("");
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("travel");
-  const [method, setMethod] = useState("cash");
-  const [outcome, setOutcome] = useState("");
+  const [method, setMethod] = useState("none");
+  const [income, setIncome] = useState("");
 
   /*const onChangeDate = e => {
     const newDate = moment(new Date(e.target.value)).format('YYYY-MM-DD');
@@ -17,28 +17,37 @@ const AddExpense = () => {
     console.log(newDate); //value picked from date picker
   };
 */
+
+  /* const handleMethod = (e) => {
+    if (e.target.value === "none") {
+      setMethod(null);
+    } else {
+      setMethod(e.target.value);
+    }
+  };*/
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(day, description, category, method, outcome);
-    const expense = {
+    console.log(day, description, category, method, income);
+    const incomes = {
       id: uuidv4(),
       day: day,
       description: description,
       category: category,
       method: method,
-      income: null,
-      outcome: outcome,
+      income: income,
+      outcome: null,
     };
 
     dispatch({
-      type: "ADD_EXPENSE",
-      payload: expense,
+      type: "ADD_INCOME",
+      payload: incomes,
     });
   };
 
   return (
-    <div className="addExpense">
-      Add Expense
+    <div className="addIncome">
+      Add Income
       <form onSubmit={handleSubmit}>
         <div className="inputs">
           <label htmlFor="day">Date:</label>
@@ -80,6 +89,7 @@ const AddExpense = () => {
             required="required"
             onChange={(e) => setMethod(e.target.value)}
           >
+            <option value="none">none</option>
             <option value="visa">Visa</option>
             <option value="mastercard">Mastercard</option>
             <option value="cash">Cash</option>
@@ -92,8 +102,8 @@ const AddExpense = () => {
             step="any"
             required="required"
             id="amount"
-            value={outcome}
-            onChange={(e) => setOutcome(e.target.value)}
+            value={income}
+            onChange={(e) => setIncome(e.target.value)}
           />
         </div>
         <button type="submit">Add</button>
@@ -102,4 +112,4 @@ const AddExpense = () => {
   );
 };
 
-export default AddExpense;
+export default AddIncome;

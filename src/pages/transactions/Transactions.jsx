@@ -3,6 +3,7 @@ import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 import TransactionsTable from "../../components/transactionsTable/TransactionsTable";
 import AddExpense from "../../components/addExpense/AddExpense";
+import AddIncome from "../../components/addIncome/AddIncome";
 //import TransactionsGrid from "../../components/transactionsTable/TransactionsGrid";
 //import transactionsRows from "../../components/transactionsRows/transactionsRows";
 /*
@@ -32,6 +33,8 @@ const Transactions = () => {
           <div className="top-to-right">
             <div className="top">
               <AddExpense />
+              
+              <AddIncome />
             </div>
             <div className="bottom">Pie Chart</div>
           </div>

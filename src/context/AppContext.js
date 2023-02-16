@@ -6,7 +6,13 @@ const AppReducer = (state, action) => {
     case "ADD_EXPENSE":
       return {
         ...state,
-        rows: [...state.rows, action.payload],
+        rows: [action.payload, ...state.rows],
+      };
+
+    case "ADD_INCOME":
+      return {
+        ...state,
+        rows: [...state.rows, action.playload],
       };
 
     default:
@@ -70,7 +76,7 @@ const initialState = {
       description: "lunch with a friend",
       category: "food",
       method: "Mastercard",
-      income: "",
+      income: null,
       outcome: "36",
     },
     {
@@ -79,7 +85,7 @@ const initialState = {
       description: "Netlix subscription",
       category: "entertainment",
       method: "Visa",
-      income: "",
+      income: null,
       outcome: "17.99",
     },
     {
@@ -88,7 +94,7 @@ const initialState = {
       description: "groceries",
       category: "food",
       method: "Visa",
-      income: "",
+      income: null,
       outcome: "56.73",
     },
     {
@@ -97,7 +103,7 @@ const initialState = {
       description: "return plane ticket to Amsterdam",
       category: "travel",
       method: "Visa",
-      income: "",
+      income: null,
       outcome: "392",
     },
     {
@@ -106,7 +112,7 @@ const initialState = {
       description: "return",
       category: "travel",
       method: "Visa",
-      income: "",
+      income: null,
       outcome: "1",
     },
   ],
