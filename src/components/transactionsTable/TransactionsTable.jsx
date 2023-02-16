@@ -12,6 +12,11 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import TablePagination from "@mui/material/TablePagination";
 
+import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
+import DeleteForeverOutlinedIcon from "@mui/icons-material/DeleteForeverOutlined";
+//import { Delete } from "@mui/icons-material";
+//import HighlightOffOutlinedIcon from '@mui/icons-material/HighlightOffOutlined';
+
 const TransactionsTable = () => {
   const { rows, columns } = useContext(AppContext);
 
@@ -58,14 +63,16 @@ const TransactionsTable = () => {
                     sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                   >
                     <TableCell align="center" component="th" scope="row">
-                      {row.date}
+                      {row.day}
                     </TableCell>
                     <TableCell align="left">{row.description}</TableCell>
                     <TableCell align="center">{row.category}</TableCell>
-                    <TableCell align="center">{row.paymentM}</TableCell>
+                    <TableCell align="center">{row.method}</TableCell>
                     <TableCell align="center">{row.income}</TableCell>
                     <TableCell align="right">{row.outcome}</TableCell>
-                    <TableCell>3 buttons</TableCell>
+                    <TableCell className="btns" align="center">
+                      <EditOutlinedIcon /> <DeleteForeverOutlinedIcon />
+                    </TableCell>
                   </TableRow>
                 ))}
             </TableBody>
