@@ -2,8 +2,10 @@ import "./transactions.scss";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 import TransactionsTable from "../../components/transactionsTable/TransactionsTable";
+import TransactionsW from "../../components/transactionW/TransactionW";
 import AddExpense from "../../components/addExpense/AddExpense";
 import AddIncome from "../../components/addIncome/AddIncome";
+import PieExpenses from "../../components/pieExpenses/PieExpenses";
 //import TransactionsGrid from "../../components/transactionsTable/TransactionsGrid";
 //import transactionsRows from "../../components/transactionsRows/transactionsRows";
 /*
@@ -30,16 +32,24 @@ const Transactions = () => {
       <div className="transactionsContainer">
         <Navbar />
         <div className="main">
-          <div className="top-to-right">
-            <div className="top">
-              <AddExpense />
-              
-              <AddIncome />
+          <div className="top">
+            <div className="left">
+              <div className="left-top">
+                <TransactionsW type="balance" />
+                <TransactionsW type="budget" />
+              </div>
+              <div className="left-bottom">
+                <AddExpense />
+                <AddIncome />
+              </div>
             </div>
-            <div className="bottom">Pie Chart</div>
+            <div className="right">
+              Pie Chart
+              <PieExpenses />
+            </div>
           </div>
-          <div className="left-to-bottom">
-            Table2
+          <div className="bottom">
+            <h2 className="title">MY TRANSACTIONS</h2>
             <TransactionsTable />
           </div>
         </div>

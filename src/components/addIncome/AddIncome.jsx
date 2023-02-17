@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import { AppContext } from "../../context/AppContext";
 import { v4 as uuidv4 } from "uuid";
+import "./addIncome.scss";
 
 const AddIncome = () => {
   const { dispatch } = useContext(AppContext);
@@ -47,7 +48,7 @@ const AddIncome = () => {
 
   return (
     <div className="addIncome">
-      Add Income
+      <h2 className="title">ADD INCOME</h2>
       <form onSubmit={handleSubmit}>
         <div className="inputs">
           <label htmlFor="day">Date:</label>
@@ -77,9 +78,9 @@ const AddIncome = () => {
             required="required"
             onChange={(e) => setCategory(e.target.value)}
           >
-            <option value="hi">hi</option>
-            <option value="travel">travel</option>
-            <option value="other">other</option>
+            <option value="hi">Hi</option>
+            <option value="travel">Travel</option>
+            <option value="other">Other</option>
           </select>
         </div>
         <div className="inputs">
@@ -96,7 +97,7 @@ const AddIncome = () => {
           </select>
         </div>
         <div className="inputs">
-          <label htmlFor="amount">Amount</label>
+          <label htmlFor="amount">Amount:</label>
           <input
             type="number"
             step="any"

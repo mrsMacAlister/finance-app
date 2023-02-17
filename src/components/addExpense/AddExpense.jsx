@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import { AppContext } from "../../context/AppContext";
 import { v4 as uuidv4 } from "uuid";
+import "./addExpense.scss";
 
 const AddExpense = () => {
   const { dispatch } = useContext(AppContext);
@@ -38,7 +39,7 @@ const AddExpense = () => {
 
   return (
     <div className="addExpense">
-      Add Expense
+      <h2 className="title"> ADD EXPENSE</h2>
       <form onSubmit={handleSubmit}>
         <div className="inputs">
           <label htmlFor="day">Date:</label>
@@ -68,9 +69,9 @@ const AddExpense = () => {
             required="required"
             onChange={(e) => setCategory(e.target.value)}
           >
-            <option value="hi">hi</option>
-            <option value="travel">travel</option>
-            <option value="other">other</option>
+            <option value="hi">Hi</option>
+            <option value="travel">Travel</option>
+            <option value="other">Other</option>
           </select>
         </div>
         <div className="inputs">
@@ -86,7 +87,7 @@ const AddExpense = () => {
           </select>
         </div>
         <div className="inputs">
-          <label htmlFor="amount">Amount</label>
+          <label htmlFor="amount">Amount:</label>
           <input
             type="number"
             step="any"
