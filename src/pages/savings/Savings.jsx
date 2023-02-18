@@ -12,7 +12,7 @@ const Savings = () => {
         <Navbar />
         <div className="savingsContainer">
           <div className="top">
-            <SavingsW />
+            <SavingsW type="savings1" />
           </div>
           <div className="bottom">
             <SavingsGoal />

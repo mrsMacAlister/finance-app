@@ -17,6 +17,7 @@ const SavingsGoal = () => {
           <img src={NorthernLights} alt="" className="image" />
           <div className="progress">progress "epruveta</div>
           <div className="description">
+            <strong>How much do I want to put aside and how often</strong>
             Description a.k.a. more details on the goal
           </div>
         </div>
