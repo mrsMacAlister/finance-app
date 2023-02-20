@@ -9,8 +9,11 @@ import Investments from "./pages/investments/Investments";
 import Calendar from "./pages/calendar/Calendar";
 import Resources from "./pages/resources/Resources";
 import { AppProvider } from "./context/AppContext";
+import { AuthContext } from "./context/AuthContext";
+import { useContext } from "react";
 
 function App() {
+  const { currentUser } = useContext(AuthContext);
   return (
     <AppProvider>
       <div className="App">
