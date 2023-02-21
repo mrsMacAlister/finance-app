@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Home from "./pages/home/Home";
 import Login from "./pages/login/Login";
 import Transactions from "./pages/transactions/Transactions";
@@ -8,27 +8,91 @@ import Loans from "./pages/loans/Loans";
 import Investments from "./pages/investments/Investments";
 import Calendar from "./pages/calendar/Calendar";
 import Resources from "./pages/resources/Resources";
+
+import { useContext } from "react";
 import { AppProvider } from "./context/AppContext";
 import { AuthContext } from "./context/AuthContext";
-import { useContext } from "react";
 
 function App() {
   const { currentUser } = useContext(AuthContext);
+
+  const RequireAuth = ({ children }) => {
+    return currentUser ? children : <Navigate to="/login" />;
+  };
+
+  console.log(currentUser);
+
   return (
     <AppProvider>
-      <div className="App">
+      <div className="app">
         <BrowserRouter>
           <Routes>
             <Route path="/">
-              <Route index element={<Home />} />
               <Route path="login" element={<Login />} />
-              <Route path="transactions" element={<Transactions />} />
-              <Route path="budgeting" element={<Budgeting />} />
-              <Route path="savings" element={<Savings />} />
-              <Route path="loans" element={<Loans />} />
-              <Route path="investments" element={<Investments />} />
-              <Route path="calendar" element={<Calendar />} />
-              <Route path="resources" element={<Resources />} />
+              <Route
+                index
+                element={
+                  <RequireAuth>
+                    <Home />
+                  </RequireAuth>
+                }
+              />
+              <Route
+                path="transactions"
+                element={
+                  <RequireAuth>
+                    <Transactions />
+                  </RequireAuth>
+                }
+              />
+              <Route
+                path="budgeting"
+                element={
+                  <RequireAuth>
+                    <Budgeting />
+                  </RequireAuth>
+                }
+              />
+              <Route
+                path="savings"
+                element={
+                  <RequireAuth>
+                    <Savings />
+                  </RequireAuth>
+                }
+              />
+              <Route
+                path="loans"
+                element={
+                  <RequireAuth>
+                    <Loans />
+                  </RequireAuth>
+                }
+              />
+              <Route
+                path="investments"
+                element={
+                  <RequireAuth>
+                    <Investments />
+                  </RequireAuth>
+                }
+              />
+              <Route
+                path="calendar"
+                element={
+                  <RequireAuth>
+                    <Calendar />
+                  </RequireAuth>
+                }
+              />
+              <Route
+                path="resources"
+                element={
+                  <RequireAuth>
+                    <Resources />
+                  </RequireAuth>
+                }
+              />
               <Route>
                 <Route />
               </Route>
