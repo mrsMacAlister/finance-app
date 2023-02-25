@@ -4,10 +4,14 @@ import { DataGrid } from "@mui/x-data-grid";
 import { useDemoData } from "@mui/x-data-grid-generator";
 import { useContext } from "react";
 import { AppContext } from "../../context/AppContext";
+import { auth } from "../../firebase";
 
 import "./transactionsGrid.scss";
+import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
+import DeleteForeverOutlinedIcon from "@mui/icons-material/DeleteForeverOutlined";
 
 const TransactionsGrid = () => {
+  console.log(auth.currentUser);
   const { columns, rows } = useContext(AppContext);
 
   const { data } = useDemoData({
@@ -24,23 +28,26 @@ const TransactionsGrid = () => {
         <DataGrid
           rows={rows}
           columns={columns}
-          pageSize={5}
-          rowsPerPageOptions={[5]}
-          checkboxSelection
+          pageSize={pageSize}
+          //rowsPerPageOptions={[10, 25, 50]}
+          onPageSizeChange={(newPage) => setPageSize(newPage)}
+          //pagination
+          //checkboxSelection
           //disableSelectionOnClick
           //experimentalFeatures={{ newEditingApi: true }}
-        />
+        />{" "}
+        <EditOutlinedIcon /> <DeleteForeverOutlinedIcon />
       </Box>
-      <div style={{ height: 400, width: "100%" }}>
+    </div>
+  );
+};
+
+/*<div style={{ height: 400, width: "100%" }}>
         <DataGrid
           pageSize={pageSize}
           onPageSizeChange={(newPage) => setPageSize(newPage)}
           pagination
           {...data}
         />
-      </div>
-    </div>
-  );
-};
-
+      </div> */
 export default TransactionsGrid;

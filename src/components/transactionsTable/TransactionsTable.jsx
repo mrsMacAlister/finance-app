@@ -32,6 +32,9 @@ const TransactionsTable = () => {
     setPage(0);
   };
 
+  const handleDelete = () => {
+    console.log("");
+  };
   return (
     <div className="transactionsTable">
       <Paper sx={{ width: "100%", overflow: "hidden" }}>
@@ -71,7 +74,8 @@ const TransactionsTable = () => {
                     <TableCell align="center">{row.income}</TableCell>
                     <TableCell align="right">{row.outcome}</TableCell>
                     <TableCell className="btns" align="center">
-                      <EditOutlinedIcon /> <DeleteForeverOutlinedIcon />
+                      <EditOutlinedIcon />
+                      <DeleteForeverOutlinedIcon onClick={handleDelete} />
                     </TableCell>
                   </TableRow>
                 ))}

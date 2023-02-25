@@ -2,6 +2,8 @@ import React, { useState, useContext } from "react";
 import { AppContext } from "../../context/AppContext";
 import { v4 as uuidv4 } from "uuid";
 import "./addExpense.scss";
+import { auth, db } from "../../firebase";
+import { doc, setDoc, addDoc, collection } from "firebase/firestore";
 
 const AddExpense = () => {
   const { dispatch } = useContext(AppContext);
@@ -12,16 +14,38 @@ const AddExpense = () => {
   const [method, setMethod] = useState("cash");
   const [outcome, setOutcome] = useState("");
 
+  const resetValues = () => {
+    setDay("");
+    setDescription("");
+    setCategory("");
+    setMethod("");
+    setOutcome("");
+  };
   /*const onChangeDate = e => {
     const newDate = moment(new Date(e.target.value)).format('YYYY-MM-DD');
     setValue(newDate);
     console.log(newDate); //value picked from date picker
   };
 */
-  const handleSubmit = (event) => {
+
+  const user = auth.currentUser;
+  const handleSubmit = async (event) => {
     event.preventDefault();
     console.log(day, description, category, method, outcome);
-    const expense = {
+    const res = await addDoc(collection(db, `${user.uid}expenses`), {
+      id: uuidv4(),
+      day: day,
+      description: description,
+      category: category,
+      method: method,
+      income: null,
+      outcome: outcome,
+    });
+
+    resetValues();
+    console.log(user.uid, res);
+
+    /* const expense = {
       id: uuidv4(),
       day: day,
       description: description,
@@ -34,7 +58,7 @@ const AddExpense = () => {
     dispatch({
       type: "ADD_EXPENSE",
       payload: expense,
-    });
+    });*/
   };
 
   return (
