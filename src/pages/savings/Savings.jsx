@@ -21,7 +21,7 @@ const Savings = () => {
         <div className="construction">
           <h2>This page is still under construction.</h2>
           <h2>Please check again later.</h2>
-          <p className="planning">
+          <div className="planning">
             <ol>
               <h3>Structure (2 specific components multiplied)</h3>
               <li>
@@ -43,7 +43,7 @@ const Savings = () => {
                 </ul>
               </li>
             </ol>
-          </p>
+          </div>
         </div>
       </div>
     </div>

@@ -26,25 +26,25 @@ const initialState = {
     {
       field: "day",
       headerName: "Date",
-      minWidth: 50,
+      width: 110,
       editable: true,
     },
     {
       field: "description",
       headerName: "Description",
-      width: 150,
+      width: 180,
       editable: true,
     },
     {
       field: "category",
       headerName: "Category",
-      width: 150,
+      width: 100,
       editable: true,
     },
     {
       field: "method",
       headerName: "Payment method",
-      width: 150,
+      width: 110,
       editable: true,
     },
 
@@ -52,22 +52,22 @@ const initialState = {
       field: "income",
       headerName: "+€",
       type: "number",
-      minWidth: 20,
+      width: 30,
       editable: true,
     },
     {
       field: "outcome",
       headerName: "-€",
       type: "number",
-      minWidth: 20,
+      width: 30,
       editable: true,
     },
-    {
+    /*{
       field: "buttons",
       headerName: "Edit/Delete",
       minWidth: 20,
       editable: true,
-    },
+    },*/
   ],
   rows: [
     {

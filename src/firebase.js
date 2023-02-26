@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -15,5 +15,11 @@ const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
 
 export const auth = getAuth();
+/*export const userID = onAuthStateChanged(auth, (user) => {
+  if (user) {
+    this.user = user.uid;
+  }
+});*/
+
 //export const userid = auth.currentUser.uid;
 //export const userid = getAuth().getUser(uid);

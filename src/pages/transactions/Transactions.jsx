@@ -1,12 +1,12 @@
 import "./transactions.scss";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
-import TransactionsTable from "../../components/transactionsTable/TransactionsTable";
+//import TransactionsTable from "../../components/transactionsTable/TransactionsTable";
 import TransactionsW from "../../components/transactionW/TransactionW";
 import AddExpense from "../../components/addExpense/AddExpense";
 import AddIncome from "../../components/addIncome/AddIncome";
 import PieExpenses from "../../components/pieExpenses/PieExpenses";
-//import TransactionsGrid from "../../components/transactionsTable/TransactionsGrid";
+import TransactionsGrid from "../../components/transactionsTable/TransactionsGrid";
 //import transactionsRows from "../../components/transactionsRows/transactionsRows";
 /*
 
@@ -50,7 +50,7 @@ const Transactions = () => {
           </div>
           <div className="bottom">
             <h2 className="title">MY TRANSACTIONS</h2>
-            <TransactionsTable />
+            <TransactionsGrid />
           </div>
         </div>
       </div>

@@ -1,33 +1,138 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import { DataGrid } from "@mui/x-data-grid";
-import { useDemoData } from "@mui/x-data-grid-generator";
-import { useContext } from "react";
+//import { useDemoData } from "@mui/x-data-grid-generator";
+import { useContext, useEffect, useState } from "react";
 import { AppContext } from "../../context/AppContext";
-import { auth } from "../../firebase";
+import { onAuthStateChanged } from "firebase/auth";
 
+import { auth, db } from "../../firebase";
+import {
+  collection,
+  getDocs,
+  deleteDoc,
+  doc,
+  onSnapshot,
+} from "firebase/firestore";
+//import { onAuthStateChanged } from "firebase/auth";
 import "./transactionsGrid.scss";
-import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
+//import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import DeleteForeverOutlinedIcon from "@mui/icons-material/DeleteForeverOutlined";
 
 const TransactionsGrid = () => {
-  console.log(auth.currentUser);
-  const { columns, rows } = useContext(AppContext);
+  //console.log(auth.currentUser);
 
-  const { data } = useDemoData({
-    dataSet: "Commodity",
-    rowLength: 500,
-    maxColumns: 6,
-  });
+  const { columns } = useContext(AppContext);
 
   const [pageSize, setPageSize] = React.useState(25);
 
+  const [data, setData] = useState([]);
+
+  // const [uid, setUid] = useState([]);
+
+  /* onAuthStateChanged(auth, (user) => {
+    setUid(user.uid);
+  });
+*/
+  useEffect(() => {
+    const unsub1 = auth.onAuthStateChanged((authUser) => {
+      unsub1();
+      if (authUser) {
+        // logged in, use authObj
+        console.log("HELLOOOOOOO", authUser);
+        const userID = authUser.uid;
+        console.log("userID HEREEEE", userID);
+        /*
+        const fetchData = async () => {
+          let list = [];
+          try {
+            const querySnapshot = await getDocs(
+              collection(db, `${userID}expenses`)
+            );
+            querySnapshot.forEach((doc) => {
+              list.push({ id: doc.id, ...doc.data() });
+              //console.log(doc.id, " => ", doc.data());
+            });
+            setData(list);
+            console.log(list);
+          } catch (err) {
+            console.log(err);
+          }
+        };
+        fetchData();*/
+
+        //LISTEN (REAL-TIME DATA FETCHING)
+        const unsub2 = onSnapshot(
+          collection(db, `${userID}expenses`), //collection(db, "products") etc.
+          (snapshot) => {
+            let list = [];
+            snapshot.docs.forEach((doc) => {
+              list.unshift({ id: doc.id, ...doc.data() });
+            });
+            setData(list);
+            //console.log("Current data: ", doc.data());
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
+        return () => {
+          //a cleanup function
+          unsub2();
+        };
+      } else {
+        // not logged in
+        console.log("not logged in");
+      }
+    });
+
+    unsub1();
+  }, []);
+
+  //console.log(data);
+  const handleDelete = (id) => {
+    const unsub = auth.onAuthStateChanged(async (authUser) => {
+      unsub();
+      if (authUser) {
+        try {
+          const userID = authUser.uid;
+          console.log("HERE AGAIN!", userID);
+
+          await deleteDoc(doc(db, `${userID}expenses`, id));
+          setData(data.filter((item) => item.id !== id));
+        } catch (err) {
+          console.log(err);
+        }
+      }
+    });
+  };
+
+  const actionColumn = [
+    {
+      field: "action",
+      headerName: "Delete",
+      width: 200,
+      renderCell: (params) => {
+        return (
+          <div className="cellAction">
+            <div
+              className="deleteButton"
+              onClick={() => handleDelete(params.row.id)}
+            >
+              <DeleteForeverOutlinedIcon />
+            </div>
+          </div>
+        );
+      },
+    },
+  ];
+
   return (
     <div className="transactionsGrid">
-      <Box sx={{ height: 400, width: "100%" }}>
+      <Box sx={{ height: 600, width: "100%" }}>
         <DataGrid
-          rows={rows}
-          columns={columns}
+          rows={data}
+          columns={columns.concat(actionColumn)}
           pageSize={pageSize}
           //rowsPerPageOptions={[10, 25, 50]}
           onPageSizeChange={(newPage) => setPageSize(newPage)}
@@ -35,8 +140,7 @@ const TransactionsGrid = () => {
           //checkboxSelection
           //disableSelectionOnClick
           //experimentalFeatures={{ newEditingApi: true }}
-        />{" "}
-        <EditOutlinedIcon /> <DeleteForeverOutlinedIcon />
+        />
       </Box>
     </div>
   );

@@ -4,21 +4,29 @@ import { v4 as uuidv4 } from "uuid";
 import "./addExpense.scss";
 import { auth, db } from "../../firebase";
 import { doc, setDoc, addDoc, collection } from "firebase/firestore";
+import { onAuthStateChanged } from "firebase/auth";
 
 const AddExpense = () => {
   const { dispatch } = useContext(AppContext);
 
   const [day, setDay] = useState("");
   const [description, setDescription] = useState("");
-  const [category, setCategory] = useState("travel");
-  const [method, setMethod] = useState("cash");
+  const [category, setCategory] = useState("hi");
+  const [method, setMethod] = useState("visa");
   const [outcome, setOutcome] = useState("");
 
+  /*
+  const [uid, setUid] = useState([]);
+
+  onAuthStateChanged(auth, (user) => {
+    setUid(user.uid);
+  });
+*/
   const resetValues = () => {
     setDay("");
     setDescription("");
-    setCategory("");
-    setMethod("");
+    setCategory("hi");
+    setMethod("visa");
     setOutcome("");
   };
   /*const onChangeDate = e => {
@@ -28,25 +36,36 @@ const AddExpense = () => {
   };
 */
 
-  const user = auth.currentUser;
+  //const user = auth.currentUser;
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     console.log(day, description, category, method, outcome);
-    const res = await addDoc(collection(db, `${user.uid}expenses`), {
-      id: uuidv4(),
-      day: day,
-      description: description,
-      category: category,
-      method: method,
-      income: null,
-      outcome: outcome,
-    });
+    const unsub = auth.onAuthStateChanged(async (authUser) => {
+      unsub();
+      if (authUser) {
+        try {
+          const user = auth.currentUser;
 
+          const res = await addDoc(collection(db, `${user.uid}expenses`), {
+            //id: uuidv4(),
+            day: day,
+            description: description,
+            category: category,
+            method: method,
+            income: null,
+            outcome: outcome,
+          });
+          console.log(res);
+        } catch (err) {
+          console.log(err);
+        }
+      }
+    });
     //TIMESTAMP instead of DATE??
 
     resetValues();
-    console.log(user.uid, res);
+    //console.log(user.uid);
 
     /* const expense = {
       id: uuidv4(),
