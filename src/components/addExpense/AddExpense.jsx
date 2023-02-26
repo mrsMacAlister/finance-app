@@ -29,6 +29,7 @@ const AddExpense = () => {
 */
 
   const user = auth.currentUser;
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     console.log(day, description, category, method, outcome);
@@ -41,6 +42,8 @@ const AddExpense = () => {
       income: null,
       outcome: outcome,
     });
+
+    //TIMESTAMP instead of DATE??
 
     resetValues();
     console.log(user.uid, res);

@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AppContext } from "../../context/AppContext";
 import "./transactionsTable.scss";
 
@@ -16,8 +16,41 @@ import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import DeleteForeverOutlinedIcon from "@mui/icons-material/DeleteForeverOutlined";
 //import { Delete } from "@mui/icons-material";
 //import HighlightOffOutlinedIcon from '@mui/icons-material/HighlightOffOutlined';
+import { auth, db } from "../../firebase";
+import { collection, getDocs } from "firebase/firestore";
 
 const TransactionsTable = () => {
+  const [data, setData] = useState([]);
+
+  //  const user = auth.currentUser;
+  const user = auth.currentUser;
+  console.log(user);
+
+  /*if (user !== null) {
+    const uid = user.uid;
+  }*/
+
+  useEffect(() => {
+    const fetchData = async () => {
+      let list = [];
+      try {
+        const querySnapshot = await getDocs(
+          collection(db, `${user.uid}expenses`)
+        );
+        querySnapshot.forEach((doc) => {
+          // doc.data() is never undefined for query doc snapshots
+          list.push(doc);
+          console.log(doc.id, " => ", doc.data());
+        });
+        setData(list);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchData();
+  }, []);
+  console.log(data);
+
   const { rows, columns } = useContext(AppContext);
 
   const [page, setPage] = React.useState(0);
@@ -58,7 +91,7 @@ const TransactionsTable = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {rows
+              {data
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row) => (
                   <TableRow
