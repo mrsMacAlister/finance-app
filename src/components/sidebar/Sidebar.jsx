@@ -1,4 +1,11 @@
 import "./sidebar.scss";
+
+import { auth } from "../../firebase";
+import { signOut } from "firebase/auth";
+
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../context/AuthContext";
+
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import AccountBalanceWalletOutlinedIcon from "@mui/icons-material/AccountBalanceWalletOutlined";
 import CalculateOutlinedIcon from "@mui/icons-material/CalculateOutlined";
@@ -11,9 +18,23 @@ import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined
 import CollectionsBookmarkOutlinedIcon from "@mui/icons-material/CollectionsBookmarkOutlined";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
-import { Link } from "react-router-dom";
+import { useContext } from "react";
 
 const Sidebar = () => {
+  const navigate = useNavigate();
+
+  const { dispatch } = useContext(AuthContext);
+
+  const handleSignOut = () =>
+    signOut(auth)
+      .then(() => {
+        dispatch({ type: "LOGOUT" });
+        navigate("/");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
   return (
     <div className="sidebar">
       <div className="top">
@@ -76,7 +97,7 @@ const Sidebar = () => {
             <AccountCircleOutlinedIcon className="icon" />
             <span>Profile</span>
           </li>
-          <li className="page">
+          <li className="page" onClick={handleSignOut}>
             <LogoutOutlinedIcon className="icon" />
             <span>Log Out</span>
           </li>

@@ -45,9 +45,9 @@ const AddExpense = () => {
       unsub();
       if (authUser) {
         try {
-          const user = auth.currentUser;
+          const userID = authUser.uid;
 
-          const res = await addDoc(collection(db, `${user.uid}expenses`), {
+          const res = await addDoc(collection(db, `${userID}expenses`), {
             //id: uuidv4(),
             day: day,
             description: description,
@@ -62,8 +62,6 @@ const AddExpense = () => {
         }
       }
     });
-    //TIMESTAMP instead of DATE??
-
     resetValues();
     //console.log(user.uid);
 

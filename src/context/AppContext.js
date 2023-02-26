@@ -32,34 +32,36 @@ const initialState = {
     {
       field: "description",
       headerName: "Description",
-      width: 180,
+      width: 250,
       editable: true,
     },
     {
       field: "category",
       headerName: "Category",
-      width: 100,
+      width: 80,
       editable: true,
+      align: "center",
     },
     {
       field: "method",
       headerName: "Payment method",
-      width: 110,
+      width: 130,
       editable: true,
+      align: "center",
     },
 
     {
       field: "income",
       headerName: "+€",
       type: "number",
-      width: 30,
+      width: 60,
       editable: true,
     },
     {
       field: "outcome",
       headerName: "-€",
       type: "number",
-      width: 30,
+      width: 60,
       editable: true,
     },
     /*{

@@ -1,6 +1,9 @@
 import React, { useState, useContext } from "react";
 import { AppContext } from "../../context/AppContext";
 import { v4 as uuidv4 } from "uuid";
+import { auth, db } from "../../firebase";
+import { collection, addDoc, doc, setDoc } from "firebase/firestore";
+import { onAuthStateChanged } from "firebase/auth";
 import "./addIncome.scss";
 
 const AddIncome = () => {
@@ -8,42 +11,43 @@ const AddIncome = () => {
 
   const [day, setDay] = useState("");
   const [description, setDescription] = useState("");
-  const [category, setCategory] = useState("travel");
-  const [method, setMethod] = useState("none");
+  const [category, setCategory] = useState("hi");
+  const [method, setMethod] = useState("visa");
   const [income, setIncome] = useState("");
 
-  /*const onChangeDate = e => {
-    const newDate = moment(new Date(e.target.value)).format('YYYY-MM-DD');
-    setValue(newDate);
-    console.log(newDate); //value picked from date picker
+  const resetValues = () => {
+    setDay("");
+    setDescription("");
+    setCategory("hi");
+    setMethod("visa");
+    setIncome("");
   };
-*/
 
-  /* const handleMethod = (e) => {
-    if (e.target.value === "none") {
-      setMethod(null);
-    } else {
-      setMethod(e.target.value);
-    }
-  };*/
-
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     console.log(day, description, category, method, income);
-    const incomes = {
-      id: uuidv4(),
-      day: day,
-      description: description,
-      category: category,
-      method: method,
-      income: income,
-      outcome: null,
-    };
+    const unsub = auth.onAuthStateChanged(async (authUser) => {
+      unsub();
+      if (authUser) {
+        try {
+          const userID = authUser.uid;
 
-    dispatch({
-      type: "ADD_INCOME",
-      payload: incomes,
+          const res = await addDoc(collection(db, `${userID}expenses`), {
+            //id: uuidv4(),
+            day: day,
+            description: description,
+            category: category,
+            method: method,
+            income: income,
+            outcome: null,
+          });
+          console.log(res);
+        } catch (err) {
+          console.log(err);
+        }
+      }
     });
+    resetValues();
   };
 
   return (
@@ -112,5 +116,4 @@ const AddIncome = () => {
     </div>
   );
 };
-
 export default AddIncome;

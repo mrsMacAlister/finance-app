@@ -39,9 +39,9 @@ const TransactionsGrid = () => {
       unsub1();
       if (authUser) {
         // logged in, use authObj
-        console.log("HELLOOOOOOO", authUser);
+        //console.log("HELLOOOOOOO", authUser);
         const userID = authUser.uid;
-        console.log("userID HEREEEE", userID);
+        //console.log("userID HEREEEE", userID);
         /*
         const fetchData = async () => {
           let list = [];
@@ -111,7 +111,8 @@ const TransactionsGrid = () => {
     {
       field: "action",
       headerName: "Delete",
-      width: 200,
+      width: 60,
+      align: "center",
       renderCell: (params) => {
         return (
           <div className="cellAction">
@@ -131,6 +132,11 @@ const TransactionsGrid = () => {
     <div className="transactionsGrid">
       <Box sx={{ height: 600, width: "100%" }}>
         <DataGrid
+          initialState={{
+            sorting: {
+              sortModel: [{ field: "day", sort: "desc" }],
+            },
+          }}
           rows={data}
           columns={columns.concat(actionColumn)}
           pageSize={pageSize}

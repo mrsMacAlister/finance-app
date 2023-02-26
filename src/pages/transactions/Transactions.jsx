@@ -2,6 +2,7 @@ import "./transactions.scss";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 //import TransactionsTable from "../../components/transactionsTable/TransactionsTable";
+//import Widget from "../../components/widget/Widget";
 import TransactionsW from "../../components/transactionW/TransactionW";
 import AddExpense from "../../components/addExpense/AddExpense";
 import AddIncome from "../../components/addIncome/AddIncome";
