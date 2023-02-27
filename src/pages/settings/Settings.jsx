@@ -3,6 +3,7 @@ import "./settings.scss";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 import Category from "../../components/category/Category";
+import PaymentM from "../../components/paymentM/PaymentM";
 
 const Settings = () => {
   return (
@@ -12,15 +13,12 @@ const Settings = () => {
         <Navbar />
         <div className="heading">
           <h2>Settings</h2>
-          <div className="addBtn">Add New</div>
-          <p>debt.map()</p>
         </div>
         <div className="categories">
           <Category />
         </div>
-        <div className="construction">
-          <h2>This page is still under construction.</h2>
-          <h2>Please check again later.</h2>
+        <div className="payments">
+          <PaymentM />
         </div>
       </div>
     </div>

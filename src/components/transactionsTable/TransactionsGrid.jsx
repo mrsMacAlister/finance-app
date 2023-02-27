@@ -28,12 +28,10 @@ const TransactionsGrid = () => {
 
   const [data, setData] = useState([]);
 
-  // const [uid, setUid] = useState([]);
+  const [cats, setCats] = useState([]);
 
-  /* onAuthStateChanged(auth, (user) => {
-    setUid(user.uid);
-  });
-*/
+  const [methods, setMethods] = useState([]);
+
   useEffect(() => {
     const unsub1 = auth.onAuthStateChanged((authUser) => {
       unsub1();
@@ -63,7 +61,7 @@ const TransactionsGrid = () => {
 
         //LISTEN (REAL-TIME DATA FETCHING)
         const unsub2 = onSnapshot(
-          collection(db, `${userID}expenses`), //collection(db, "products") etc.
+          collection(db, `${userID}expenses`),
           (snapshot) => {
             let list = [];
             snapshot.docs.forEach((doc) => {

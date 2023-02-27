@@ -1,31 +1,30 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { AppContext } from "../../context/AppContext";
-import { v4 as uuidv4 } from "uuid";
 import { auth, db } from "../../firebase";
-import { collection, addDoc, doc, setDoc } from "firebase/firestore";
+import { collection, addDoc, getDocs } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
 import "./addIncome.scss";
 
 const AddIncome = () => {
   const { dispatch } = useContext(AppContext);
-
+  const [paymentM, setPaymentM] = useState([]);
   const [day, setDay] = useState("");
   const [description, setDescription] = useState("");
-  const [category, setCategory] = useState("hi");
+  //const [category, setCategory] = useState(null);
   const [method, setMethod] = useState("visa");
   const [income, setIncome] = useState("");
 
   const resetValues = () => {
     setDay("");
     setDescription("");
-    setCategory("hi");
-    setMethod("visa");
+    //setCategory(null);
+    setMethod("");
     setIncome("");
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(day, description, category, method, income);
+    console.log(day, description, method, income);
     const unsub = auth.onAuthStateChanged(async (authUser) => {
       unsub();
       if (authUser) {
@@ -36,7 +35,7 @@ const AddIncome = () => {
             //id: uuidv4(),
             day: day,
             description: description,
-            category: category,
+            category: null,
             method: method,
             income: income,
             outcome: null,
@@ -49,6 +48,36 @@ const AddIncome = () => {
     });
     resetValues();
   };
+
+  useEffect(() => {
+    const unsub1 = auth.onAuthStateChanged((authUser) => {
+      unsub1();
+      if (authUser) {
+        const userID = authUser.uid;
+
+        const fetchData = async () => {
+          let listpay = [];
+          try {
+            const queryPaymentM = await getDocs(
+              collection(db, `${userID}payments`)
+            );
+
+            queryPaymentM.forEach((doc) => {
+              listpay.push({ id: doc.id, ...doc.data() });
+            });
+            console.log(listpay);
+            setPaymentM(listpay);
+          } catch (err) {
+            console.log(err);
+          }
+        };
+        fetchData();
+      } else {
+        console.log("not logged in");
+      }
+    });
+    unsub1();
+  }, []);
 
   return (
     <div className="addIncome">
@@ -79,12 +108,11 @@ const AddIncome = () => {
           <label htmlFor="category">Category:</label>
           <select
             id="category"
-            required="required"
-            onChange={(e) => setCategory(e.target.value)}
+            disabled
+            //required="required"
+            //onChange={(e) => setCategory(e.target.value)}
           >
-            <option value="hi">Hi</option>
-            <option value="travel">Travel</option>
-            <option value="other">Other</option>
+            <option value=""></option>
           </select>
         </div>
         <div className="inputs">
@@ -94,10 +122,14 @@ const AddIncome = () => {
             required="required"
             onChange={(e) => setMethod(e.target.value)}
           >
-            <option value="none">none</option>
-            <option value="visa">Visa</option>
-            <option value="mastercard">Mastercard</option>
-            <option value="cash">Cash</option>
+            <option value=""></option>
+            {paymentM.map((payM) => {
+              return (
+                <option value={payM.paymentM} key={payM.id}>
+                  {payM.paymentM}
+                </option>
+              );
+            })}
           </select>
         </div>
         <div className="inputs">

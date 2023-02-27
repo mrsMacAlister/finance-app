@@ -4,13 +4,8 @@
   .settingsContainer {
     flex: 6;
 
-    .construction {
-      color: gray;
-      display: flex;
-      height: 60vh;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+    .heading {
+      margin: 20px;
     }
   }
 }

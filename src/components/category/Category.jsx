@@ -26,7 +26,6 @@ const Category = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    //console.log(day, description, category, method, outcome);
     const unsub = auth.onAuthStateChanged(async (authUser) => {
       unsub();
       if (authUser) {
@@ -84,7 +83,7 @@ const Category = () => {
       if (authUser) {
         try {
           const userID = authUser.uid;
-          console.log("HERE AGAIN!", userID);
+          //console.log("HERE AGAIN!", userID);
 
           await deleteDoc(doc(db, `${userID}category`, id));
           setCats(cats.filter((item) => item.id !== id));
@@ -97,7 +96,6 @@ const Category = () => {
 
   return (
     <div className="category">
-      <div className="heading"> Category</div>
       <div className="main">
         <div className="left">
           <h3>Add category</h3>
@@ -139,17 +137,18 @@ const Category = () => {
                 maxLength={15}
                 placeholder="Category"
                 required="required"
-                id="description"
+                id="category"
                 value={category}
                 onChange={(e) => setCategory(e.target.value)}
               />
             </div>
-            <button type="submit">Add</button>
+            <button type="submit" className="submit-button">
+              Add
+            </button>
           </form>
         </div>
         <div className="right">
           <h3>My categories</h3>
-          <p>categories.map()</p>
           <div className="cat-list">
             {cats.map((cat) => (
               <div className="cat" key={cat.id}>

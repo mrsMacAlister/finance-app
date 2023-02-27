@@ -1,32 +1,25 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { AppContext } from "../../context/AppContext";
-import { v4 as uuidv4 } from "uuid";
 import "./addExpense.scss";
 import { auth, db } from "../../firebase";
-import { doc, setDoc, addDoc, collection } from "firebase/firestore";
+import { getDocs, addDoc, collection } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
 
 const AddExpense = () => {
   const { dispatch } = useContext(AppContext);
-
+  const [cats, setCats] = useState([]);
+  const [paymentM, setPaymentM] = useState([]);
   const [day, setDay] = useState("");
   const [description, setDescription] = useState("");
-  const [category, setCategory] = useState("hi");
-  const [method, setMethod] = useState("visa");
+  const [category, setCategory] = useState("");
+  const [method, setMethod] = useState("");
   const [outcome, setOutcome] = useState("");
 
-  /*
-  const [uid, setUid] = useState([]);
-
-  onAuthStateChanged(auth, (user) => {
-    setUid(user.uid);
-  });
-*/
   const resetValues = () => {
     setDay("");
     setDescription("");
-    setCategory("hi");
-    setMethod("visa");
+    setCategory("");
+    setMethod("");
     setOutcome("");
   };
   /*const onChangeDate = e => {
@@ -36,11 +29,9 @@ const AddExpense = () => {
   };
 */
 
-  //const user = auth.currentUser;
-
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(day, description, category, method, outcome);
+    // console.log(day, description, category, method, outcome);
     const unsub = auth.onAuthStateChanged(async (authUser) => {
       unsub();
       if (authUser) {
@@ -48,7 +39,6 @@ const AddExpense = () => {
           const userID = authUser.uid;
 
           const res = await addDoc(collection(db, `${userID}expenses`), {
-            //id: uuidv4(),
             day: day,
             description: description,
             category: category,
@@ -63,23 +53,46 @@ const AddExpense = () => {
       }
     });
     resetValues();
-    //console.log(user.uid);
-
-    /* const expense = {
-      id: uuidv4(),
-      day: day,
-      description: description,
-      category: category,
-      method: method,
-      income: null,
-      outcome: outcome,
-    };
-
-    dispatch({
-      type: "ADD_EXPENSE",
-      payload: expense,
-    });*/
   };
+
+  useEffect(() => {
+    const unsub1 = auth.onAuthStateChanged((authUser) => {
+      unsub1();
+      if (authUser) {
+        const userID = authUser.uid;
+
+        const fetchData = async () => {
+          let listcat = [];
+          let listpay = [];
+          try {
+            const queryCats = await getDocs(
+              collection(db, `${userID}category`)
+            );
+            const queryPaymentM = await getDocs(
+              collection(db, `${userID}payments`)
+            );
+            queryCats.forEach((doc) => {
+              listcat.push({ id: doc.id, ...doc.data() });
+            });
+            queryPaymentM.forEach((doc) => {
+              listpay.push({ id: doc.id, ...doc.data() });
+            });
+            setCats(listcat);
+            console.log(listcat, listpay);
+            setPaymentM(listpay);
+          } catch (err) {
+            console.log(err);
+          }
+        };
+        fetchData();
+      } else {
+        console.log("not logged in");
+      }
+    });
+    unsub1();
+  }, []);
+
+  console.log(category, method);
 
   return (
     <div className="addExpense">
@@ -113,9 +126,14 @@ const AddExpense = () => {
             required="required"
             onChange={(e) => setCategory(e.target.value)}
           >
-            <option value="hi">Hi</option>
-            <option value="travel">Travel</option>
-            <option value="other">Other</option>
+            <option value=""></option>
+            {cats.map((cat) => {
+              return (
+                <option value={cat.catName} key={cat.id}>
+                  {cat.catName}
+                </option>
+              );
+            })}
           </select>
         </div>
         <div className="inputs">
@@ -125,9 +143,14 @@ const AddExpense = () => {
             required="required"
             onChange={(e) => setMethod(e.target.value)}
           >
-            <option value="visa">Visa</option>
-            <option value="mastercard">Mastercard</option>
-            <option value="cash">Cash</option>
+            <option value=""></option>
+            {paymentM.map((payM) => {
+              return (
+                <option value={payM.paymentM} key={payM.id}>
+                  {payM.paymentM}
+                </option>
+              );
+            })}
           </select>
         </div>
         <div className="inputs">

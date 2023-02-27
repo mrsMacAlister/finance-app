@@ -75,7 +75,7 @@ const Sidebar = () => {
               <span>Loans</span>
             </li>
           </Link>
-          <Link to="/investments" className="link">
+          {/*  <Link to="/investments" className="link">
             <li className="page">
               <CurrencyBitcoinOutlinedIcon className="icon" />
               <span>Investments</span>
@@ -92,7 +92,7 @@ const Sidebar = () => {
               <CollectionsBookmarkOutlinedIcon className="icon" />
               <span>Resources</span>
             </li>
-          </Link>
+          </Link> */}
           <hr />
           <Link to="/settings" className="link">
             <li className="page">
