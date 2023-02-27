@@ -32,6 +32,23 @@ const Login = () => {
 
   return (
     <div className="login">
+      <div className="intro">
+        <h3>Welcome :)</h3>
+        <p>
+          This web app is still <strong>work in progress</strong> and is being
+          constantly updated.
+        </p>
+        <p>
+          Come in and test it out by creating your own account or by playing
+          with existing data:
+        </p>
+        <p>
+          email: <strong>a@a.com</strong>
+        </p>
+        <p>
+          password: <strong>123456</strong>
+        </p>
+      </div>
       <form onSubmit={handleSubmit}>
         <input
           type="email"

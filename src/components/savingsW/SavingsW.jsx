@@ -33,9 +33,6 @@ const SavingsW = () => {
           <div className="deadline">by {dt.deadline}</div>
         </div>
       ))}
-      <div className="addSavings">
-        <button className="add">+</button>
-      </div>
     </div>
   );
 };

@@ -7,7 +7,7 @@ const SavingsGoal = () => {
   return (
     <div className="savingsGoal">
       <div className="goalAmount">
-        <div className="amount">5.000 €</div>
+        <div className="amount">100 € / 5.000 €</div>
       </div>
       <div className="goalDetails">
         <EditOutlinedIcon className="edit" />
@@ -15,7 +15,7 @@ const SavingsGoal = () => {
           <div className="title">Norhtern Lights in Finland</div>
           <div className="deadline">by September 2023</div>
           <img src={NorthernLights} alt="" className="image" />
-          <div className="progress">progress "epruveta</div>
+          <div className="progress">progress "epruveta"</div>
           <div className="description">
             <strong>How much do I want to put aside and how often</strong>
             Description a.k.a. more details on the goal

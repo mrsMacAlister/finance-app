@@ -3,6 +3,7 @@ import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 import SavingsW from "../../components/savingsW/SavingsW";
 import SavingsGoal from "../../components/savingsGoal/SavingsGoal";
+import { Link } from "react-router-dom";
 
 const Savings = () => {
   return (
@@ -11,6 +12,12 @@ const Savings = () => {
       <div className="main">
         <Navbar />
         <div className="savingsContainer">
+          <div className="heading">
+            <h2>My Goals & Dreams, My Savings</h2>
+            <Link to="/savings/add-savings">
+              <div className="addBtn">Add New</div>
+            </Link>
+          </div>
           <div className="top">
             <SavingsW type="savings1" />
           </div>
