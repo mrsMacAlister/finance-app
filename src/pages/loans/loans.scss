@@ -4,6 +4,39 @@
   .loansContainer {
     flex: 6;
 
+    .heading {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 20px 22px 0 20px;
+
+      .addBtn {
+        padding: 10px;
+        border: solid 1px black;
+        border-radius: 8px;
+      }
+    }
+    .top {
+      margin-left: 20px;
+    }
+    .bottom {
+      margin: 30px 20px;
+      /* -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
+      box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
+      border-radius: 10px;
+      background:#ccc;
+   */
+
+      .construction {
+        color: gray;
+        display: flex;
+        height: 60vh;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+
     .construction {
       color: gray;
       display: flex;

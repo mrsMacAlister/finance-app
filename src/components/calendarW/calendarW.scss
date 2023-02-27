@@ -15,14 +15,40 @@
       font-weight: bold;
     }
   }
-  .list {
-    margin-top: 10px;
-    padding: 0;
+  .dates-list {
     font-size: 14px;
+    .items {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 10px 0;
+      .item {
+        display: flex;
+        align-items: center;
+        .item-date {
+          min-width: fit-content;
+          margin-right: 8px;
+        }
+      }
+      .delete-button {
+        display: flex;
+        align-items: center;
+      }
+    }
+  }
 
-    .item {
-      list-style-type: none;
-      padding: 5px;
+  form {
+    font-size: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    input {
+      margin: 10px 5px 10px 0;
+    }
+    button {
+      margin: 0;
+      padding: 1px 5px;
     }
   }
 }

@@ -6,6 +6,7 @@ import Budgeting from "./pages/budgeting/Budgeting";
 import Savings from "./pages/savings/Savings";
 import AddSavings from "./pages/addSavings/AddSavings";
 import Loans from "./pages/loans/Loans";
+import AddLoan from "./pages/addLoan/AddLoan";
 import Investments from "./pages/investments/Investments";
 import Calendar from "./pages/calendar/Calendar";
 import Resources from "./pages/resources/Resources";
@@ -76,6 +77,14 @@ function App() {
                 element={
                   <RequireAuth>
                     <Loans />
+                  </RequireAuth>
+                }
+              />
+              <Route
+                path="loans/add-loan"
+                element={
+                  <RequireAuth>
+                    <AddLoan />
                   </RequireAuth>
                 }
               />

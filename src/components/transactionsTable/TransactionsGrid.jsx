@@ -28,10 +28,6 @@ const TransactionsGrid = () => {
 
   const [data, setData] = useState([]);
 
-  const [cats, setCats] = useState([]);
-
-  const [methods, setMethods] = useState([]);
-
   useEffect(() => {
     const unsub1 = auth.onAuthStateChanged((authUser) => {
       unsub1();
