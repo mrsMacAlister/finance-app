@@ -13,6 +13,7 @@ import Resources from "./pages/resources/Resources";
 import { useContext } from "react";
 import { AppProvider } from "./context/AppContext";
 import { AuthContext } from "./context/AuthContext";
+import Settings from "./pages/settings/Settings";
 
 function App() {
   const { currentUser } = useContext(AuthContext);
@@ -61,16 +62,15 @@ function App() {
                     <Savings />
                   </RequireAuth>
                 }
-              >
-                <Route
-                  path="add-savings"
-                  element={
-                    <RequireAuth>
-                      <AddSavings />
-                    </RequireAuth>
-                  }
-                />
-              </Route>
+              />
+              <Route
+                path="savings/add-savings"
+                element={
+                  <RequireAuth>
+                    <AddSavings />
+                  </RequireAuth>
+                }
+              />
               <Route
                 path="loans"
                 element={
@@ -100,6 +100,14 @@ function App() {
                 element={
                   <RequireAuth>
                     <Resources />
+                  </RequireAuth>
+                }
+              />
+              <Route
+                path="settings"
+                element={
+                  <RequireAuth>
+                    <Settings />
                   </RequireAuth>
                 }
               />

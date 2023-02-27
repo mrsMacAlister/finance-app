@@ -16,7 +16,8 @@ import AccountBalanceOutlinedIcon from "@mui/icons-material/AccountBalanceOutlin
 import CurrencyBitcoinOutlinedIcon from "@mui/icons-material/CurrencyBitcoinOutlined";
 import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined";
 import CollectionsBookmarkOutlinedIcon from "@mui/icons-material/CollectionsBookmarkOutlined";
-import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
+//import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
+import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
 import { useContext } from "react";
 
@@ -93,10 +94,12 @@ const Sidebar = () => {
             </li>
           </Link>
           <hr />
-          <li className="page">
-            <AccountCircleOutlinedIcon className="icon" />
-            <span>Profile</span>
-          </li>
+          <Link to="/settings" className="link">
+            <li className="page">
+              <SettingsOutlinedIcon className="icon" />
+              <span>Settings</span>
+            </li>
+          </Link>
           <li className="page" onClick={handleSignOut}>
             <LogoutOutlinedIcon className="icon" />
             <span>Log Out</span>
