@@ -16,8 +16,53 @@
         border-radius: 8px;
       }
     }
-    .top {
-      margin-left: 20px;
+    .loan-items {
+      margin: 20px 0 0 20px;
+      display: flex;
+      flex-wrap: wrap;
+
+      .loan-item {
+        margin: 0 20px 20px 0;
+        padding: 10px;
+        font-size: normal;
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        align-items: center;
+        justify-content: center;
+        -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
+        box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
+        border-radius: 10px;
+
+        .title {
+          text-transform: uppercase;
+          font-size: 16px;
+          font-weight: bold;
+        }
+
+        .progressbar {
+          width: 120px;
+          height: 120px;
+
+          .CircularProgressbar-path {
+            stroke: green;
+          }
+          .CircularProgressbar-trail {
+            stroke: red;
+          }
+          .CircularProgressbar-text {
+            fill: blue;
+          }
+          //background doesn't work
+          .CircularProgressbar-background {
+            fill: rgba(0, 0, 0, 0.5);
+          }
+        }
+
+        .goal {
+          font-size: 13px;
+        }
+      }
     }
     .bottom {
       margin: 30px 20px;
@@ -26,24 +71,6 @@
       border-radius: 10px;
       background:#ccc;
    */
-
-      .construction {
-        color: gray;
-        display: flex;
-        height: 60vh;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-      }
-    }
-
-    .construction {
-      color: gray;
-      display: flex;
-      height: 60vh;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
     }
   }
 }

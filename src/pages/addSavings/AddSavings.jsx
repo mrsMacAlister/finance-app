@@ -28,13 +28,13 @@ const AddSavings = () => {
   const [deadline, setDeadline] = useState("");
   const [description, setDescription] = useState("");
 
-  const handleInput = (e) => {
+  /*const handleInput = (e) => {
     const id = e.target.id;
     const value = e.target.value;
 
     setData({ ...data, [id]: value });
   };
-
+*/
   console.log(data);
   console.log(file);
 
