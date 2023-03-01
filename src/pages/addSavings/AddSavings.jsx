@@ -44,9 +44,6 @@ const AddSavings = () => {
       unsub();
       if (authUser) {
         try {
-          /*await setDoc(doc(db, "users", res.user.uid), {
-            ...data,
-            timeStamp: serverTimestamp(),*/
           const userID = authUser.uid;
 
           const res = await addDoc(collection(db, `${userID}savings`), {
@@ -100,10 +97,6 @@ const AddSavings = () => {
             () => {
               getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
                 setImg(downloadURL);
-                /*setData((previousData) => ({
-                  ...previousData,
-                  img: downloadURL,
-                }));*/
                 console.log("File available at", downloadURL);
               });
             }
@@ -162,17 +155,6 @@ const AddSavings = () => {
             <form onSubmit={handleAdd}>
               <div className="formContainer">
                 <div className="inputs">
-                  <label htmlFor="file">
-                    Image: <DriveFolderUploadIcon className="icon" />
-                  </label>
-                  <input
-                    type="file"
-                    id="file"
-                    onChange={(e) => setFile(e.target.files[0])}
-                    style={{ display: "none" }}
-                  />
-                </div>
-                <div className="inputs">
                   <label htmlFor="title">Title:</label>
                   <input
                     type="text"
@@ -215,12 +197,23 @@ const AddSavings = () => {
                     onChange={(e) => setDescription(e.target.value)}
                   />
                 </div>
+                <div className="inputs">
+                  <label htmlFor="file">
+                    Image: <DriveFolderUploadIcon className="icon" />
+                  </label>
+                  <input
+                    type="file"
+                    id="file"
+                    onChange={(e) => setFile(e.target.files[0])}
+                    style={{ display: "none" }}
+                  />
+                </div>
               </div>
               <button
                 disabled={percentage !== null && percentage < 100}
                 type="submit"
               >
-                Send
+                Add
               </button>
             </form>
           </div>

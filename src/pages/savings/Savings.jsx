@@ -69,7 +69,7 @@ const Savings = () => {
         <div className="savingsContainer">
           <div className="heading">
             <h2>My Goals & Dreams, My Savings</h2>
-            <Link to="/savings/add-savings">
+            <Link to="/savings/add-savings" className="link">
               <div className="addBtn">Add New</div>
             </Link>
           </div>

@@ -47,7 +47,7 @@
 
             .inputs {
               width: 40%;
-              margin-right: 20px;
+              margin: 10px 0 10px 20px;
 
               label {
                 display: flex;
@@ -74,7 +74,7 @@
             color: white;
             font-weight: bold;
             cursor: pointer;
-            margin: 40px 0;
+            margin: 10px 0 20px 0;
             border-radius: 4px;
 
             &:disabled {

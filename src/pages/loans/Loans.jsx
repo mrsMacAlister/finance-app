@@ -78,7 +78,7 @@ const Loans = () => {
         <Navbar />
         <div className="heading">
           <h2>My Debt Being Paid Off</h2>
-          <Link to="/loans/add-loan">
+          <Link to="/loans/add-loan" className="link">
             <div className="addBtn">Add New</div>
           </Link>
         </div>
