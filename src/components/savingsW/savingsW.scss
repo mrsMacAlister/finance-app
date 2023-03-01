@@ -31,24 +31,4 @@
       font-size: 13px;
     }
   }
-  .addSavings {
-    flex: 1;
-    //ADJUST HEIGHT TO FIT THE REST!
-    height: 100px;
-    //padding: 10px;
-    margin: 20px 20px 0 0;
-    -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
-    box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
-    border-radius: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    .add {
-      //Better to be a <div> ??
-      font-size: 30px;
-
-      //padding: 20px;
-    }
-  }
 }

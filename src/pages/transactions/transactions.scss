@@ -16,7 +16,16 @@
           flex: 2;
           //background-color: pink;
           .left-top {
-            display: flex;
+            .widget {
+              margin: 20px 20px 0 0;
+            }
+            .left-top-bottom {
+              display: flex;
+
+              .widget {
+                margin-right: 20px;
+              }
+            }
           }
           .left-bottom {
             display: flex;

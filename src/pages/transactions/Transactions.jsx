@@ -4,6 +4,7 @@ import Navbar from "../../components/navbar/Navbar";
 //import TransactionsTable from "../../components/transactionsTable/TransactionsTable";
 //import Widget from "../../components/widget/Widget";
 import TransactionsW from "../../components/transactionW/TransactionW";
+import Widget from "../../components/widget/Widget";
 import AddExpense from "../../components/addExpense/AddExpense";
 import AddIncome from "../../components/addIncome/AddIncome";
 import PieExpenses from "../../components/pieExpenses/PieExpenses";
@@ -36,8 +37,11 @@ const Transactions = () => {
           <div className="top">
             <div className="left">
               <div className="left-top">
-                <TransactionsW type="balance" />
-                <TransactionsW type="budget" />
+                <Widget type="balance" />
+                <div className="left-top-bottom">
+                  <Widget type="outcome" className="widget-top" />
+                  <Widget type="income" />
+                </div>
               </div>
               <div className="left-bottom">
                 <AddExpense />

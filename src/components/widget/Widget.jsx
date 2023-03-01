@@ -29,7 +29,7 @@ const Widget = ({ type }) => {
     case "outcome":
       data = {
         title: "OUTCOME",
-        amount: `-${outcome}`,
+        amount: `${outcome}`,
         goal: "- 4.500 €",
       };
       break;
@@ -103,7 +103,7 @@ const Widget = ({ type }) => {
   return (
     <div className="widget">
       <div className="title">{data.title}</div>
-      <div className="amount">{data.amount}</div>
+      <div className="amount">{data.amount} €</div>
       <div className="goal">Goal: {data.goal}</div>
     </div>
   );
