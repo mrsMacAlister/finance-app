@@ -3,12 +3,14 @@ import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 //import TransactionsTable from "../../components/transactionsTable/TransactionsTable";
 //import Widget from "../../components/widget/Widget";
-import TransactionsW from "../../components/transactionW/TransactionW";
+//import TransactionsW from "../../components/transactionW/TransactionW";
 import Widget from "../../components/widget/Widget";
 import AddExpense from "../../components/addExpense/AddExpense";
 import AddIncome from "../../components/addIncome/AddIncome";
 import PieExpenses from "../../components/pieExpenses/PieExpenses";
 import TransactionsGrid from "../../components/transactionsTable/TransactionsGrid";
+//import Category from "../../components/category/Category";
+import CategoryList from "../../components/categoryList/CategoryList";
 //import transactionsRows from "../../components/transactionsRows/transactionsRows";
 /*
 
@@ -49,8 +51,11 @@ const Transactions = () => {
               </div>
             </div>
             <div className="right">
-              Pie Chart
-              <PieExpenses />
+              <div className="pie-chart">
+                <h3 className="title">EXPENSES</h3>
+                <PieExpenses />
+              </div>
+              <CategoryList />
             </div>
           </div>
           <div className="bottom">

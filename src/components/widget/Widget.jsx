@@ -70,7 +70,7 @@ const Widget = ({ type }) => {
               return total + item;
             }, 0);
 
-            console.log("Total OUTCOME", totalOutcome);
+            //console.log("Total OUTCOME", totalOutcome);
             setOutcome(totalOutcome);
 
             const incomeQuery = query(
@@ -88,8 +88,7 @@ const Widget = ({ type }) => {
             const totalIncome = incomeList.reduce((total, item) => {
               return total + item;
             }, 0);
-
-            console.log("Total OUTCOME", totalOutcome);
+            //console.log("Total INCOME", totalIncome);
             setIncome(totalIncome);
           };
           fetchData();

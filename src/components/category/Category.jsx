@@ -36,7 +36,7 @@ const Category = () => {
             catColor: hex,
             catName: category,
           });
-          console.log(res);
+          //console.log(res);
         } catch (err) {
           console.log(err);
         }
@@ -76,7 +76,6 @@ const Category = () => {
     unsub1();
   }, []);
 
-  console.log(cats);
   const handleDelete = (id) => {
     const unsub = auth.onAuthStateChanged(async (authUser) => {
       unsub();

@@ -65,7 +65,7 @@ const AddIncome = () => {
             queryPaymentM.forEach((doc) => {
               listpay.push({ id: doc.id, ...doc.data() });
             });
-            console.log(listpay);
+            //console.log(listpay);
             setPaymentM(listpay);
           } catch (err) {
             console.log(err);

@@ -78,7 +78,7 @@ const AddExpense = () => {
               listpay.push({ id: doc.id, ...doc.data() });
             });
             setCats(listcat);
-            console.log(listcat, listpay);
+            //console.log(listcat, listpay);
             setPaymentM(listpay);
           } catch (err) {
             console.log(err);
@@ -92,7 +92,7 @@ const AddExpense = () => {
     unsub1();
   }, []);
 
-  console.log(category, method);
+  //console.log(category, method);
 
   return (
     <div className="addExpense">
