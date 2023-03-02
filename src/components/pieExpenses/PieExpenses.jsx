@@ -13,11 +13,38 @@ import {
 
 const PieExpenses = () => {
   const [cats, setCats] = useState([]);
+  const [expenses, setExpenses] = useState([]);
   //const [data, setData] = useState([]);
   const [datas, setDatas] = useState([]);
   const [colors, setColors] = useState([]);
   const [outcome, setOutcome] = useState([]);
   const [income, setIncome] = useState([]);
+
+  const categoryExpense = expenses.map((expense) => {
+    let list3 = [];
+    cats.map((cat) => {
+      let list4 = [];
+      if (expense.category == cat.catName) {
+        list4.push(parseInt(expense.outcome));
+        //console.log("THIS THING WORKS!");
+        const totalOutcome = list4.reduce((total, item) => {
+          return (total += item);
+        }, 0);
+        list3.push(totalOutcome);
+      } else {
+        //console.log("cats not the same");
+        return; 
+      }
+      //console.log(list4, "total outcome", totalOutcome);
+
+      //setDatas(...datas, totalOutcome);
+    });
+    console.log(list3);
+    //console.log("expense map", expense);
+  });
+
+  //categoryExpense();
+
   //
 
   /* useEffect(() => {
@@ -141,23 +168,36 @@ const PieExpenses = () => {
             console.log(error);
           }
         );
-        const unsub3 = cats.map((cat) => {
-          onSnapshot(
-            collection(db, `${userID}expenses`),
-            where("outcome", "!==", null),
-            //where("category", "==", cat.catName),
-            (snapshot) => {
-              let list2 = [];
-              snapshot.docs.forEach((doc) => {
-                console.log("IT WORKS!!", doc.data().category);
-                /*if (doc.data().category == cat.catName) {
-                  console.log("IT WORKS, OMG!!!");
-                } else {
-                  console.log("you're close :D ");
-                }*/
-              });
-            },
-            /*
+        const q = query(
+          collection(db, `${userID}expenses`),
+          where("outcome", "!=", null)
+        );
+        const unsub3 = onSnapshot(
+          q,
+          (querySnapshot) => {
+            let list2 = [];
+            querySnapshot.docs.forEach((doc) => {
+              console.log(doc.data().category, "doc category");
+              /*    cats.map((cat) => {
+                let list3 = [];
+                console.log(cat.catName);
+                if (doc.data().category == cat.catName) {
+                  console.log("cats map is working");
+                  list3.push(doc.data().outcome);
+                }
+                console.log("this is outcome  map", list3);
+                const categoryOutcome = list3.reduce((total, item) => {
+                  return total + item;
+                }, 0);
+                setDatas(...datas, categoryOutcome);
+                console.log("DATASS", datas);
+              });*/
+              list2.push({ id: doc.id, ...doc.data() });
+              //console.log("IT WORKS!!", doc.data());
+            });
+            setExpenses(list2);
+          },
+          /*
           (snapshot) => {
             let list2 = [];
             cats.map((cat) => {
@@ -172,11 +212,11 @@ const PieExpenses = () => {
               setDatas(list2);
             });
             console.log("datas here", datas);*/
-            (error) => {
-              console.log(error);
-            }
-          );
-        });
+          (error) => {
+            console.log(error);
+          }
+        );
+
         return () => {
           unsub2();
           unsub3();
@@ -188,9 +228,9 @@ const PieExpenses = () => {
     unsub1();
   }, []);
 
-  console.log("cats here", cats);
+  //console.log("cats here", cats);
 
-  console.log("datas here", datas);
+  //console.log("expenses here", expenses);
   //
   const data = [
     { name: "Group A", value: 400 },

@@ -51,6 +51,13 @@ const Transactions = () => {
               </div>
             </div>
             <div className="right">
+              <div className="overlay">
+                <p>
+                  This section is still <br />
+                  under construction.
+                  <br /> Check again later.
+                </p>
+              </div>
               <div className="pie-chart">
                 <h3 className="title">EXPENSES</h3>
                 <PieExpenses />
