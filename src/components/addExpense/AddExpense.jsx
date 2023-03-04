@@ -12,6 +12,7 @@ const AddExpense = () => {
   const [day, setDay] = useState("");
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
+  const [catColor, setCatColor] = useState("");
   const [method, setMethod] = useState("");
   const [outcome, setOutcome] = useState("");
 
@@ -42,6 +43,7 @@ const AddExpense = () => {
             day: day,
             description: description,
             category: category,
+            catColor: catColor,
             method: method,
             income: null,
             outcome: outcome,
@@ -94,6 +96,12 @@ const AddExpense = () => {
 
   //console.log(category, method);
 
+  const handleCategory = (e) => {
+    setCategory(e.target.value);
+    setCatColor(e.target.value);
+    console.log(e.target.value, e.target.value[0], e.target.value[1]);
+  };
+  console.log(catColor);
   return (
     <div className="addExpense">
       <h2 className="title"> ADD EXPENSE</h2>
@@ -121,15 +129,15 @@ const AddExpense = () => {
         </div>
         <div className="inputs">
           <label htmlFor="category">Category:</label>
-          <select
-            id="category"
-            required="required"
-            onChange={(e) => setCategory(e.target.value)}
-          >
+          <select id="category" required="required" onChange={handleCategory}>
             <option value=""></option>
             {cats.map((cat) => {
               return (
-                <option value={cat.catName} key={cat.id}>
+                <option
+                  value={(cat.catName, cat.catColor)}
+                  name={cat.catColor}
+                  key={cat.id}
+                >
                   {cat.catName}
                 </option>
               );
