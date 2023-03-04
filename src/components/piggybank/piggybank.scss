@@ -16,6 +16,20 @@
     font-weight: bold;
   }
 
+  .carousel {
+    // width: 100%;
+    background-color: rgba(56, 199, 255, 0.89);
+    .swiper {
+      background-color: rgb(255, 78, 114);
+      max-width: 600px;
+
+      .swiper-slide {
+        width: 50px;
+        background-color: #fff;
+      }
+    }
+  }
+
   img {
     height: 200px;
     width: 200px;
