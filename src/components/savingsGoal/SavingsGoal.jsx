@@ -25,10 +25,8 @@ const SavingsGoal = () => {
             );
             querySnapshot.forEach((doc) => {
               list.push({ id: doc.id, ...doc.data() });
-              //console.log(doc.id, " => ", doc.data());
             });
             setData(list);
-            console.log(list);
           } catch (err) {
             console.log(err);
           }
