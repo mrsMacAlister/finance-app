@@ -99,16 +99,8 @@ const AddExpense = () => {
   const handleCategory = (e) => {
     setCategory(e.target.value);
     setCatColor(e.target.querySelector("data").value);
-    console.log("OVER HERE!!!!!!!!!!!!!!!", category, catColor);
-    console.log(
-      "THIS IS VALUE",
-      e.target.value,
-      "this is a span?",
-      e.target.querySelector("data").value
-    );
   };
-  console.log("CATS HERE!!! ", cats);
-  //console.log(catColor);
+
   return (
     <div className="addExpense">
       <h2 className="title"> ADD EXPENSE</h2>

@@ -1,4 +1,5 @@
 import "./chart.scss";
+import { useEffect, useState } from "react";
 import {
   AreaChart,
   Area,
@@ -26,6 +27,7 @@ const data = [
   { id: 8, Month: "Aug", Income: 4000, Outcome: 2400, Balance: 850 },
   { id: 9, Month: "Sept", Income: 4000, Outcome: 2400, Balance: 1250 },
 ];
+
 /*
 const CustomTooltip = ({ active, data }) => {
   if (active) {
@@ -62,6 +64,14 @@ const gradientOffset = () => {
 const off = gradientOffset();
 
 const Chart = ({ aspect }) => {
+  useEffect(() => {
+    const fetchData = async () => {
+      const today = new Date();
+      console.log("TODAy", today);
+    };
+    fetchData();
+  });
+
   return (
     <div className="chart">
       <div className="title">CHART</div>

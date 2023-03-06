@@ -31,7 +31,6 @@ const Savings = () => {
               list.push({ id: doc.id, ...doc.data() });
             });
             setData(list);
-            console.log(list);
           } catch (err) {
             console.log(err);
           }
@@ -108,7 +107,7 @@ const Savings = () => {
                 );
               })}
 
-              <div className="savingsGoal">
+              {/*  <div className="savingsGoal">
                 <div className="goalAmount">
                   <div className="amount">100 € / 5.000 €</div>
                 </div>
@@ -130,7 +129,7 @@ const Savings = () => {
                     Savings plan Japanese style (optional & for later)
                   </div>
                 </div>
-              </div>
+              </div>*/}
             </div>
           </div>
         </div>

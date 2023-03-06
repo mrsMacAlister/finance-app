@@ -25,7 +25,6 @@ const Piggybank = () => {
               list.push({ id: doc.id, ...doc.data() });
             });
             setData(list);
-            console.log(list);
           } catch (err) {
             console.log(err);
           }
@@ -50,15 +49,15 @@ const Piggybank = () => {
           grabCursor={true}
           pagination={true}
           modules={[Pagination]}
-          onSlideChange={() => console.log("slide change")}
-          onSwiper={(swiper) => console.log(swiper)}
+          //onSlideChange={() => console.log("slide change")}
+          //onSwiper={(swiper) => console.log(swiper)}
         >
           {" "}
           <div className="slide-container">
             {data.map((dt) => {
               return (
-                <SwiperSlide className="swiper-slide">
-                  <div className="savings-goal" key={dt.id}>
+                <SwiperSlide className="swiper-slide" key={dt.id}>
+                  <div className="savings-goal">
                     <div className="goal-amount">
                       <div className="amount">{dt.amount} €</div>
                     </div>

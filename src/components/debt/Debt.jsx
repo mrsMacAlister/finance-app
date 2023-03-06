@@ -12,8 +12,6 @@ import "swiper/css";
 const Debt = () => {
   const [data, setData] = useState([]);
 
-  console.log(data);
-
   useEffect(() => {
     const unsub1 = auth.onAuthStateChanged((authUser) => {
       unsub1();
@@ -54,14 +52,14 @@ const Debt = () => {
           grabCursor={true}
           pagination={true}
           modules={[Pagination]}
-          onSlideChange={() => console.log("slide change")}
-          onSwiper={(swiper) => console.log(swiper)}
+          //onSlideChange={() => console.log("slide change")}
+          //onSwiper={(swiper) => console.log(swiper)}
         >
           <div className="slide-container">
             {data.map((dt) => {
               return (
-                <SwiperSlide className="swiper-slide">
-                  <div className="loan-item" key={dt.id}>
+                <SwiperSlide className="swiper-slide" key={dt.id}>
+                  <div className="loan-item">
                     <div className="loan-amount">
                       <div className="amount">
                         {dt.paid} € / {dt.amount} €

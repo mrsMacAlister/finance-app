@@ -57,12 +57,12 @@ const Sidebar = () => {
               <span>Transactions</span>
             </li>
           </Link>
-          <Link to="/budgeting" className="link">
+          {/*<Link to="/budgeting" className="link">
             <li className="page">
               <CalculateOutlinedIcon className="icon" />
               <span>Budgeting</span>
             </li>
-          </Link>
+  </Link>*/}
           <Link to="/savings" className="link">
             <li className="page">
               <SavingsOutlinedIcon className="icon" />
