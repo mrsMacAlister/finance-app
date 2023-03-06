@@ -3,7 +3,8 @@ import { useState, useEffect } from "react";
 import { auth, db } from "../../firebase";
 import { getDocs, collection } from "firebase/firestore";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { EffectCreative } from "swiper";
+import { Pagination } from "swiper";
+import "swiper/css/pagination";
 import "swiper/css";
 
 const Piggybank = () => {
@@ -47,23 +48,13 @@ const Piggybank = () => {
           slidesPerView={1}
           slidesPerGroup={1}
           grabCursor={true}
-          effect={"creative"}
-          creativeEffect={{
-            prev: {
-              shadow: true,
-              translate: [0, 0, -400],
-            },
-            next: {
-              translate: ["100%", 0, 0],
-            },
-          }}
-          modules={EffectCreative}
+          pagination={true}
+          modules={[Pagination]}
           onSlideChange={() => console.log("slide change")}
           onSwiper={(swiper) => console.log(swiper)}
         >
           {" "}
           <div className="slide-container">
-            
             {data.map((dt) => {
               return (
                 <SwiperSlide className="swiper-slide">

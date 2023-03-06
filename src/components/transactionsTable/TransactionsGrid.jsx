@@ -90,7 +90,7 @@ const TransactionsGrid = () => {
       if (authUser) {
         try {
           const userID = authUser.uid;
-          console.log("HERE AGAIN!", userID);
+         // console.log("HERE AGAIN!", userID);
 
           await deleteDoc(doc(db, `${userID}expenses`, id));
           setData(data.filter((item) => item.id !== id));

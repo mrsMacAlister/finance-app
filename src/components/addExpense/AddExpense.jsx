@@ -98,10 +98,17 @@ const AddExpense = () => {
 
   const handleCategory = (e) => {
     setCategory(e.target.value);
-    setCatColor(e.target.value);
-    console.log(e.target.value, e.target.value[0], e.target.value[1]);
+    setCatColor(e.target.querySelector("data").value);
+    console.log("OVER HERE!!!!!!!!!!!!!!!", category, catColor);
+    console.log(
+      "THIS IS VALUE",
+      e.target.value,
+      "this is a span?",
+      e.target.querySelector("data").value
+    );
   };
-  console.log(catColor);
+  console.log("CATS HERE!!! ", cats);
+  //console.log(catColor);
   return (
     <div className="addExpense">
       <h2 className="title"> ADD EXPENSE</h2>
@@ -133,12 +140,10 @@ const AddExpense = () => {
             <option value=""></option>
             {cats.map((cat) => {
               return (
-                <option
-                  value={(cat.catName, cat.catColor)}
-                  name={cat.catColor}
-                  key={cat.id}
-                >
-                  {cat.catName}
+                <option value={cat.catName} name={cat.catColor} key={cat.id}>
+                  <data className="span" value={cat.catColor}>
+                    {cat.catName}
+                  </data>
                 </option>
               );
             })}

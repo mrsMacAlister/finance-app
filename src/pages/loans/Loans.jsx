@@ -62,7 +62,7 @@ const Loans = () => {
         try {
           const userID = authUser.uid;
 
-          await deleteDoc(doc(db, `${userID}savings`, id));
+          await deleteDoc(doc(db, `${userID}loans`, id));
           setData(data.filter((item) => item.id !== id));
         } catch (err) {
           console.log(err);
@@ -70,6 +70,8 @@ const Loans = () => {
       }
     });
   };
+
+  ////
 
   return (
     <div className="loans">
@@ -86,13 +88,17 @@ const Loans = () => {
           {data.map((dt) => {
             return (
               <div className="loan-item" key={dt.id}>
+                <DeleteForeverOutlinedIcon
+                  className="delete"
+                  onClick={() => handleDelete(dt.id)}
+                />
                 <div className="title">{dt.title}</div>
                 <div className="amount">To pay off: {dt.amount} €</div>
                 <div className="paid">Already paid off: {dt.paid} €</div>
                 <div className="progressbar">
                   <CircularProgressbar
                     value={dt.percentage}
-                    text={dt.percentage + " %"}
+                    text={dt.percentage.toFixed(0) + " %"}
                     strokeWidth={5}
                   />
                 </div>

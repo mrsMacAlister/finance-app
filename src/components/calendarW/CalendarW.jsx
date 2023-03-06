@@ -15,6 +15,12 @@ const CalendarW = () => {
   const [description, setDescription] = useState("");
   const [importantDay, setImportantDay] = useState([]);
 
+  importantDay.sort(
+    (a, b) =>
+      new Date(...a.day.split("/").reverse()) -
+      new Date(...b.day.split("/").reverse())
+  );
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     const unsub = auth.onAuthStateChanged(async (authUser) => {
@@ -89,6 +95,7 @@ const CalendarW = () => {
       <div className="top">
         <div className="title">IMPORTANT DATES</div>
       </div>
+      
       <div className="dates-list">
         {importantDay.map((day) => (
           <div className="items" key={day.id}>
