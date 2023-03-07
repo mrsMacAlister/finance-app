@@ -67,7 +67,19 @@ const Chart = ({ aspect }) => {
   useEffect(() => {
     const fetchData = async () => {
       const today = new Date();
-      console.log("TODAy", today);
+      const thisMonth = new Date(new Date().setMonth(today.getMonth())); //0-11, 2 = march
+      const lastMonth = new Date(new Date().setMonth(today.getMonth() - 1));
+      const prevMonth = new Date(new Date().setMonth(today.getMonth() - 2));
+      console.log(
+        "today",
+        today,
+        "this month",
+        thisMonth,
+        "last month: ",
+        lastMonth,
+        "previous month: ",
+        prevMonth
+      );
     };
     fetchData();
   });

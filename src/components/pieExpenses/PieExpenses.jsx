@@ -10,6 +10,7 @@ import {
   query,
   where,
 } from "firebase/firestore";
+import { ErrorOutlineSharp } from "@mui/icons-material";
 
 const PieExpenses = () => {
   const [cats, setCats] = useState([]);
@@ -20,7 +21,123 @@ const PieExpenses = () => {
   const [outcome, setOutcome] = useState([]);
   const [income, setIncome] = useState([]);
 
-  const categoryExpense = expenses.map((expense) => {
+  useEffect(() => {
+    const unsub1 = auth.onAuthStateChanged((authUser) => {
+      unsub1();
+      if (authUser) {
+        const userID = authUser.uid;
+        const fetchData = async () => {
+          try {
+            const categories = query(
+              collection(db, `${userID}expenses`),
+              where("category", "!=", null)
+            );
+            const querySnapshotC = await getDocs(categories);
+
+            let categoryName = [];
+            for (const documentSnapshotC of querySnapshotC.docs) {
+              const category = documentSnapshotC.data();
+
+              //  console.log("category data()", category);
+              categoryName.push({
+                category: documentSnapshotC.data().category,
+              });
+            }
+            //  console.log(categoryName);
+            let list6 = [];
+            categoryName.map((cat) => {
+              //  console.log("well hello there", cat.category);
+              const fetchExpenses = async () => {
+                //console.log("FETCH EXPENSE CAT HERE", cat);
+                try {
+                  const expenses = query(
+                    collection(db, `${userID}expenses`),
+                    where("category", "==", cat.category)
+                  );
+                  const querySnapshotE = await getDocs(expenses);
+                  let outcome = [];
+                  for (const documentSnapshotE of querySnapshotE.docs) {
+                    const expense = documentSnapshotE.data();
+
+                    // console.log("expense data()", expense);
+                    outcome.push({
+                      amount: documentSnapshotE.data().outcome,
+                    });
+                  }
+                  console.log("OUTCOME", outcome);
+
+                  const totalExpenses = outcome.reduce((total, number) => {
+                    let amount = number.amount;
+                    console.log(amount, "total", total);
+
+                    return total + amount;
+                    //console.log("total", total.amount, "amount", number.amount);
+                    // return total + number.amount;
+                  }, 0);
+                  //console.log(totalExpenses);
+
+                  list6.push({
+                    catName: cat.category,
+                    totalOutcome: totalExpenses,
+                  });
+                } catch (err) {
+                  console.log(err);
+                }
+              };
+              fetchExpenses();
+            });
+            console.log("LIST 6", list6);
+            /* querySnapshot.forEach((doc) => {
+              list.push({ id: doc.id, ...doc.data() });
+            });*/
+            setCats(categoryName);
+          } catch (err) {
+            console.log(err);
+          }
+        };
+        fetchData();
+      } else {
+        console.log("not logged in");
+      }
+    });
+    unsub1();
+  }, []);
+
+  // console.log(cats);
+
+  /* useEffect(() => {
+    const unsub1 = auth.onAuthStateChanged((authUser) => {
+      unsub1();
+      if (authUser) {
+        const userID = authUser.uid;
+        const unsub2 = onSnapshot(
+          collection(db, `${userID}expenses`),
+          where("category", "!=", null),
+          (snapshot) => {
+            let list1 = [];
+            snapshot.docs.forEach((doc) => {
+              list1.push({ id: doc.id, ...doc.data() });
+            }, setCats(list1));
+            console.log(list1);
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
+        const unsub3 = onSnapshot();
+        return () => {
+          unsub2();
+        };
+      } else {
+        console.log("not logged in");
+      }
+    });
+    unsub1();
+  }, []);
+*/
+  // console.log(cats);
+
+  /* const categoryExpense = expenses.map((expense) => {
     let list3 = [];
     cats.map((cat) => {
       let list4 = [];
@@ -33,7 +150,7 @@ const PieExpenses = () => {
         list3.push(totalOutcome);
       } else {
         //console.log("cats not the same");
-        return; 
+        return;
       }
       //console.log(list4, "total outcome", totalOutcome);
 
@@ -42,7 +159,7 @@ const PieExpenses = () => {
     console.log(list3);
     //console.log("expense map", expense);
   });
-
+*/
   //categoryExpense();
 
   //
@@ -150,7 +267,7 @@ const PieExpenses = () => {
   }, []);*/
 
   //////////////////////
-  useEffect(() => {
+  /* useEffect(() => {
     const unsub1 = auth.onAuthStateChanged((authUser) => {
       unsub1();
       if (authUser) {
@@ -178,7 +295,9 @@ const PieExpenses = () => {
             let list2 = [];
             querySnapshot.docs.forEach((doc) => {
               console.log(doc.data().category, "doc category");
-              /*    cats.map((cat) => {
+*/
+
+  /*    cats.map((cat) => {
                 let list3 = [];
                 console.log(cat.catName);
                 if (doc.data().category == cat.catName) {
@@ -192,12 +311,12 @@ const PieExpenses = () => {
                 setDatas(...datas, categoryOutcome);
                 console.log("DATASS", datas);
               });*/
-              list2.push({ id: doc.id, ...doc.data() });
+  /*   list2.push({ id: doc.id, ...doc.data() });
               //console.log("IT WORKS!!", doc.data());
             });
             setExpenses(list2);
-          },
-          /*
+          },*/
+  /*
           (snapshot) => {
             let list2 = [];
             cats.map((cat) => {
@@ -212,7 +331,7 @@ const PieExpenses = () => {
               setDatas(list2);
             });
             console.log("datas here", datas);*/
-          (error) => {
+  /*       (error) => {
             console.log(error);
           }
         );
@@ -226,7 +345,9 @@ const PieExpenses = () => {
       }
     });
     unsub1();
-  }, []);
+  }, []);*/
+
+  ////
 
   //console.log("cats here", cats);
 
