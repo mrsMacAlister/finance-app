@@ -1,5 +1,8 @@
 import "./chart.scss";
 import { useEffect, useState } from "react";
+import { auth, db } from "../../firebase";
+import { collection, query, where, getDocs } from "firebase/firestore";
+import moment from "moment/moment";
 import {
   AreaChart,
   Area,
@@ -11,6 +14,12 @@ import {
 } from "recharts";
 
 const data = [
+  { id: 4, Month: "April", Income: 3800, Outcome: 2560, Balance: 1240 },
+  { id: 5, Month: "May", Income: 4000, Outcome: 2400, Balance: 181 },
+  { id: 6, Month: "June", Income: 5000, Outcome: 2400, Balance: 1850 },
+  { id: 7, Month: "July", Income: 2050, Outcome: 2400, Balance: 340 },
+  { id: 8, Month: "Aug", Income: 4000, Outcome: 2400, Balance: 850 },
+  { id: 9, Month: "Sept", Income: 4000, Outcome: 2400, Balance: 1250 },
   {
     id: 1,
     Month: "Jan",
@@ -20,12 +29,6 @@ const data = [
   },
   { id: 2, Month: "Feb", Income: 4000, Outcome: 4400, Balance: -200 },
   { id: 3, Month: "Mar", Income: 3500, Outcome: 2400, Balance: 1100 },
-  { id: 4, Month: "April", Income: 3800, Outcome: 2560, Balance: 1240 },
-  { id: 5, Month: "May", Income: 4000, Outcome: 2400, Balance: 181 },
-  { id: 6, Month: "June", Income: 5000, Outcome: 2400, Balance: 1850 },
-  { id: 7, Month: "July", Income: 2050, Outcome: 2400, Balance: 340 },
-  { id: 8, Month: "Aug", Income: 4000, Outcome: 2400, Balance: 850 },
-  { id: 9, Month: "Sept", Income: 4000, Outcome: 2400, Balance: 1250 },
 ];
 
 /*
@@ -65,24 +68,51 @@ const off = gradientOffset();
 
 const Chart = ({ aspect }) => {
   useEffect(() => {
-    const fetchData = async () => {
-      const today = new Date();
-      const thisMonth = new Date(new Date().setMonth(today.getMonth())); //0-11, 2 = march
-      const lastMonth = new Date(new Date().setMonth(today.getMonth() - 1));
-      const prevMonth = new Date(new Date().setMonth(today.getMonth() - 2));
-      console.log(
-        "today",
-        today,
-        "this month",
-        thisMonth,
-        "last month: ",
-        lastMonth,
-        "previous month: ",
-        prevMonth
-      );
-    };
-    fetchData();
-  });
+    const unsub1 = auth.onAuthStateChanged((authUser) => {
+      unsub1();
+      if (authUser) {
+        const userID = authUser.uid;
+        const fetchData = async () => {
+          let today = new Date("2023-03-07");
+          const thisMonth = new Date(new Date().setMonth(today.getMonth())); //0-11, 2 = march
+          const lastMonth = new Date(new Date().setMonth(today.getMonth() - 1));
+          const prevMonth = new Date(new Date().setMonth(today.getMonth() - 2));
+          console.log(
+            "today",
+            today,
+            "this month",
+            thisMonth,
+            "last month: ",
+            lastMonth,
+            "previous month: ",
+            prevMonth
+          );
+
+          today = moment(today).format("L");
+          console.log(today);
+
+          const thisMonthQuery = query(
+            collection(db, `${userID}expenses`),
+            where("date", "<=", today),
+            where("date", ">", lastMonth)
+          );
+
+          const thisMonthData = await getDocs(thisMonthQuery);
+          // loop through and deduct 1 month each time
+
+          console.log(thisMonthData.docs);
+
+          /*     for (let i = 6; i > 0; i--) {
+            console.log("hi");
+          }*/
+        };
+        fetchData();
+      } else {
+        console.log("not logged in");
+      }
+    });
+    unsub1();
+  }, []);
 
   return (
     <div className="chart">
