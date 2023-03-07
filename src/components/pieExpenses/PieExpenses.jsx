@@ -59,27 +59,39 @@ const PieExpenses = () => {
                   for (const documentSnapshotE of querySnapshotE.docs) {
                     const expense = documentSnapshotE.data();
 
-                    // console.log("expense data()", expense);
+                    console.log("expense data()", expense);
                     outcome.push({
                       amount: documentSnapshotE.data().outcome,
+                      category: documentSnapshotE.data().category,
+                      catColor: documentSnapshotE.data().catColor,
                     });
                   }
-                  console.log("OUTCOME", outcome);
-
+                  //console.log("OUTCOME", outcome);
                   const totalExpenses = outcome.reduce((total, number) => {
-                    let amount = number.amount;
-                    console.log(amount, "total", total);
-
+                    let amount = Number(number.amount);
                     return total + amount;
-                    //console.log("total", total.amount, "amount", number.amount);
-                    // return total + number.amount;
                   }, 0);
+
                   //console.log(totalExpenses);
 
                   list6.push({
+                    totalExpense: totalExpenses,
+                    category: outcome.category,
+                    catColor: outcome.catColor,
+                  });
+                  /* const lolz = outcome.reduce(
+                    (total, number) => ({
+                      amount: total.amount + number.amount,
+                    }),
+                    0
+                  );*/
+
+                  //console.log(lolz);
+                  /*
+                  list6.push({
                     catName: cat.category,
                     totalOutcome: totalExpenses,
-                  });
+                  });*/
                 } catch (err) {
                   console.log(err);
                 }
@@ -90,6 +102,8 @@ const PieExpenses = () => {
             /* querySnapshot.forEach((doc) => {
               list.push({ id: doc.id, ...doc.data() });
             });*/
+
+            console.log("LIST 6", list6);
             setCats(categoryName);
           } catch (err) {
             console.log(err);
