@@ -2,7 +2,7 @@ import "./chart.scss";
 import { useEffect, useState } from "react";
 import { auth, db } from "../../firebase";
 import { collection, query, where, getDocs } from "firebase/firestore";
-import moment from "moment/moment";
+//import moment from "moment/moment";
 import {
   AreaChart,
   Area,
@@ -73,34 +73,48 @@ const Chart = ({ aspect }) => {
       if (authUser) {
         const userID = authUser.uid;
         const fetchData = async () => {
-          let today = new Date("2023-03-07");
+          /* const today = new Date(2023, 2, 8);
           const thisMonth = new Date(new Date().setMonth(today.getMonth())); //0-11, 2 = march
           const lastMonth = new Date(new Date().setMonth(today.getMonth() - 1));
           const prevMonth = new Date(new Date().setMonth(today.getMonth() - 2));
           console.log(
-            "today",
+            "TODAY IS: ",
             today,
-            "this month",
+            "THIS MONTH IS: ",
             thisMonth,
-            "last month: ",
+            "LAST MONTH IS: ",
             lastMonth,
-            "previous month: ",
+            "PREVIOUS MONTH IS: ",
             prevMonth
           );
 
-          today = moment(today).format("L");
-          console.log(today);
+          //today = moment(today).format("L");
+          console.log("TODAY IS", today);
+*/
 
-          const thisMonthQuery = query(
+          const marchQuery = query(
             collection(db, `${userID}expenses`),
-            where("date", "<=", today),
-            where("date", ">", lastMonth)
+            where("day", "<=", "2023-03-31"),
+            where("day", ">", "2023-02-28")
           );
 
-          const thisMonthData = await getDocs(thisMonthQuery);
+          const marchData = await getDocs(marchQuery);
           // loop through and deduct 1 month each time
 
-          console.log(thisMonthData.docs);
+          console.log(marchData.docs);
+
+          let marchDocs = [];
+          for (const marchSnapshot of marchData.docs) {
+            const marchDt = marchSnapshot.data();
+            //console.log("MARCH DT", marchDt);
+            marchDocs.push({
+              outcome: marchDt.outcome,
+              income: marchDt.income,
+            });
+          }
+          console.log("MARCH DOCS", marchDocs);
+
+//.reduce - if outcome != null, then reduce          
 
           /*     for (let i = 6; i > 0; i--) {
             console.log("hi");

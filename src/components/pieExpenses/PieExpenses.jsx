@@ -59,7 +59,7 @@ const PieExpenses = () => {
                   for (const documentSnapshotE of querySnapshotE.docs) {
                     const expense = documentSnapshotE.data();
 
-                    console.log("expense data()", expense);
+                    //console.log("expense data()", expense);
                     outcome.push({
                       amount: documentSnapshotE.data().outcome,
                       category: documentSnapshotE.data().category,
@@ -98,12 +98,12 @@ const PieExpenses = () => {
               };
               fetchExpenses();
             });
-            console.log("LIST 6", list6);
+            //console.log("LIST 6", list6);
             /* querySnapshot.forEach((doc) => {
               list.push({ id: doc.id, ...doc.data() });
             });*/
 
-            console.log("LIST 6", list6);
+            //console.log("LIST 6", list6);
             setCats(categoryName);
           } catch (err) {
             console.log(err);
