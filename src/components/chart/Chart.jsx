@@ -4,13 +4,24 @@ import { useEffect, useState } from "react";
 import { auth, db } from "../../firebase";
 import { collection, query, where, getDocs } from "firebase/firestore";
 //import moment from "moment/moment";
-import {
+/*import {
   AreaChart,
   Area,
   XAxis,
   YAxis,
   CartesianGrid,
   Tooltip,
+  ResponsiveContainer,
+} from "recharts";*/
+import {
+  BarChart,
+  Bar,
+  Cell,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
   ResponsiveContainer,
 } from "recharts";
 
@@ -55,8 +66,8 @@ const Chart = ({ aspect }) => {
     { id: 202303, Month: "Mar", Income: 3500, Outcome: 2400, Balance: 1100 },
   ];
   const gradientOffset = () => {
-    const dataMax = Math.max(...data.map((i) => i.Balance));
-    const dataMin = Math.min(...data.map((i) => i.Balance));
+    const dataMax = Math.max(...datas.map((i) => i.Balance));
+    const dataMin = Math.min(...datas.map((i) => i.Balance));
 
     if (dataMax <= 0) {
       return 0;
@@ -351,7 +362,38 @@ const Chart = ({ aspect }) => {
     <div className="chart">
       <div className="title">CHART</div>
       <div className="graph">
+        <ResponsiveContainer width="100%" height="100%">
+          <BarChart width={150} height={40} data={data}>
+            <Bar dataKey="Income" fill="#8884d8" />
+          </BarChart>
+        </ResponsiveContainer>
         <ResponsiveContainer aspect={aspect}>
+          <BarChart
+            width={500}
+            height={400}
+            data={datas}
+            margin={{
+              top: 10,
+              right: 30,
+              left: 0,
+              bottom: 0,
+            }}
+          >
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="Month" />
+            <YAxis />
+            <Tooltip />
+            <defs>
+              <linearGradient id="splitColor" x1="0" y1="0" x2="0" y2="1">
+                <stop offset={off} stopColor="#82ca9d" stopOpacity={1} />
+                <stop offset={off} stopColor="ED756D" stopOpacity={1} />
+              </linearGradient>
+            </defs>
+            <Bar dataKey="Balance" fill="url(#splitColor)" />
+          </BarChart>
+        </ResponsiveContainer>
+
+        {/* <ResponsiveContainer aspect={aspect}>
           <AreaChart
             width={500}
             height={400}
@@ -380,7 +422,7 @@ const Chart = ({ aspect }) => {
               fill="url(#splitColor)"
             />
           </AreaChart>
-        </ResponsiveContainer>
+          </ResponsiveContainer>*/}
       </div>
     </div>
   );
