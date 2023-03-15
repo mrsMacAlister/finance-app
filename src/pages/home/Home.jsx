@@ -27,13 +27,13 @@ const Home = () => {
           <Debt />
           <CalendarW />
         </div>
-        <div className="third">
+        {/*<div className="third">
           <InvestmentsW title="CRYPTO" name="" amount="" currency="" />
           <InvestmentsW title="STOCKS" name="" amount="" currency="" />
           <InvestmentsW title="PRECIOUS METALS" name="" amount="" currency="" />
           <InvestmentsW title="OTHER" name=" " amount="" currency="" />
         </div>
-        <div className="fourth">Google Calendar API || (MUI?) calendar</div>
+  <div className="fourth">Google Calendar API || (MUI?) calendar</div>*/}
       </div>
     </div>
   );

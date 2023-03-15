@@ -93,8 +93,10 @@ const Loans = () => {
                   onClick={() => handleDelete(dt.id)}
                 />
                 <div className="title">{dt.title}</div>
-                <div className="amount">To pay off: {dt.amount} €</div>
-                <div className="paid">Already paid off: {dt.paid} €</div>
+                <div className="amounts">
+                  <div className="amount">To pay off: {dt.amount} €</div>
+                  <div className="paid">Already paid off: {dt.paid} €</div>
+                </div>
                 <div className="progressbar">
                   <CircularProgressbar
                     value={dt.percentage}

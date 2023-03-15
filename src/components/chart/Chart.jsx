@@ -22,6 +22,7 @@ import {
   CartesianGrid,
   Tooltip,
   Legend,
+  ReferenceLine,
   ResponsiveContainer,
 } from "recharts";
 
@@ -65,7 +66,7 @@ const Chart = ({ aspect }) => {
     { id: 202302, Month: "Feb", Income: 4000, Outcome: 4400, Balance: -200 },
     { id: 202303, Month: "Mar", Income: 3500, Outcome: 2400, Balance: 1100 },
   ];
-  const gradientOffset = () => {
+  /* const gradientOffset = () => {
     const dataMax = Math.max(...datas.map((i) => i.Balance));
     const dataMin = Math.min(...datas.map((i) => i.Balance));
 
@@ -79,7 +80,7 @@ const Chart = ({ aspect }) => {
     return dataMax / (dataMax - dataMin);
   };
 
-  const off = gradientOffset();
+  const off = gradientOffset();*/
 
   useEffect(() => {
     const unsub1 = auth.onAuthStateChanged((authUser) => {
@@ -357,16 +358,16 @@ const Chart = ({ aspect }) => {
     unsub1();
   }, []);
 
-  console.log("DATAs", datas);
+  console.log("DATAs", datas, "Datas balance", datas.Balance);
   return (
     <div className="chart">
       <div className="title">CHART</div>
       <div className="graph">
-        <ResponsiveContainer width="100%" height="100%">
+        {/*<ResponsiveContainer width="100%" height="100%">
           <BarChart width={150} height={40} data={data}>
             <Bar dataKey="Income" fill="#8884d8" />
           </BarChart>
-        </ResponsiveContainer>
+  </ResponsiveContainer>*/}
         <ResponsiveContainer aspect={aspect}>
           <BarChart
             width={500}
@@ -383,13 +384,17 @@ const Chart = ({ aspect }) => {
             <XAxis dataKey="Month" />
             <YAxis />
             <Tooltip />
-            <defs>
-              <linearGradient id="splitColor" x1="0" y1="0" x2="0" y2="1">
-                <stop offset={off} stopColor="#82ca9d" stopOpacity={1} />
-                <stop offset={off} stopColor="ED756D" stopOpacity={1} />
-              </linearGradient>
-            </defs>
-            <Bar dataKey="Balance" fill="url(#splitColor)" />
+            <ReferenceLine y={0} stroke="#000" />
+            <Bar
+              dataKey="Balance"
+              fill={
+                datas.Balance < 0
+                  ? "red"
+                  : datas.Balance > 0
+                  ? "green"
+                  : "rgba(0, 128 ,0 , .45)"
+              }
+            />
           </BarChart>
         </ResponsiveContainer>
 

@@ -11,45 +11,56 @@
     justify-content: center;
 
     .title {
-      font-size: 13px;
+      font-size: 15px;
       font-weight: bold;
     }
   }
-  .dates-list {
-    margin-top: 20px;
-    font-size: 14px;
-    .items {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin: 10px 0;
-      .item {
+
+  .bottom {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .dates-list {
+      margin-top: 20px;
+      font-size: 14px;
+      max-height: 319px;
+      overflow-y: scroll;
+      .items {
         display: flex;
+        justify-content: space-between;
         align-items: center;
-        .item-date {
-          min-width: fit-content;
-          margin-right: 8px;
+        margin: 10px 0;
+        .item {
+          display: flex;
+          align-items: center;
+          .item-date {
+            min-width: fit-content;
+            margin-right: 8px;
+          }
+        }
+        .delete-button {
+          display: flex;
+          align-items: center;
         }
       }
-      .delete-button {
-        display: flex;
-        align-items: center;
+    }
+
+    form {
+      font-size: 14px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0 0 10px 0;
+
+      input {
+        margin: 10px 5px 10px 0;
       }
-    }
-  }
-
-  form {
-    font-size: 14px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    input {
-      margin: 10px 5px 10px 0;
-    }
-    button {
-      margin: 0;
-      padding: 1px 5px;
+      button {
+        margin: 0;
+        padding: 1px 5px;
+      }
     }
   }
 }

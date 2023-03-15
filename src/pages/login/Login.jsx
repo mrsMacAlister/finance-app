@@ -39,15 +39,27 @@ const Login = () => {
           constantly updated.
         </p>
         <p>
-          Come in and test it out by creating your own account or by playing
-          with existing data:
+          Come in and test it out by logging into an account below and play with
+          data:
         </p>
-        <p>
-          email: <strong>a@a.com</strong>
-        </p>
-        <p>
-          password: <strong>123456</strong>
-        </p>
+        <div className="accounts">
+          <div className="account">
+            <p>
+              email: <strong>a@a.com</strong>
+            </p>
+            <p>
+              password: <strong>123123</strong>
+            </p>
+          </div>
+          <div className="account">
+            <p>
+              email: <strong>b@b.com</strong>
+            </p>
+            <p>
+              password: <strong>123123</strong>
+            </p>
+          </div>
+        </div>
       </div>
       <form onSubmit={handleSubmit}>
         <input

@@ -43,39 +43,40 @@ const Sidebar = () => {
           <span className="logo">My Money 🪙</span>{" "}
         </Link>
       </div>
-      <div className="center">
-        <ul>
-          <Link to="/" className="link">
-            <li className="page">
-              <DashboardIcon className="icon" />
-              <span>Dashboard</span>
-            </li>
-          </Link>
-          <Link to="/transactions" className="link">
-            <li className="page">
-              <AccountBalanceWalletOutlinedIcon className="icon" />
-              <span>Transactions</span>
-            </li>
-          </Link>
-          {/*<Link to="/budgeting" className="link">
+      <div className="main">
+        <div className="center">
+          <ul>
+            <Link to="/" className="link">
+              <li className="page">
+                <DashboardIcon className="icon" />
+                <span>Dashboard</span>
+              </li>
+            </Link>
+            <Link to="/transactions" className="link">
+              <li className="page">
+                <AccountBalanceWalletOutlinedIcon className="icon" />
+                <span>Transactions</span>
+              </li>
+            </Link>
+            {/*<Link to="/budgeting" className="link">
             <li className="page">
               <CalculateOutlinedIcon className="icon" />
               <span>Budgeting</span>
             </li>
-  </Link>*/}
-          <Link to="/savings" className="link">
-            <li className="page">
-              <SavingsOutlinedIcon className="icon" />
-              <span>Savings</span>
-            </li>
-          </Link>
-          <Link to="/loans" className="link">
-            <li className="page">
-              <AccountBalanceOutlinedIcon className="icon" />
-              <span>Loans</span>
-            </li>
-          </Link>
-          {/*  <Link to="/investments" className="link">
+            </Link>*/}
+            <Link to="/savings" className="link">
+              <li className="page">
+                <SavingsOutlinedIcon className="icon" />
+                <span>Savings</span>
+              </li>
+            </Link>
+            <Link to="/loans" className="link">
+              <li className="page">
+                <AccountBalanceOutlinedIcon className="icon" />
+                <span>Loans</span>
+              </li>
+            </Link>
+            {/*  <Link to="/investments" className="link">
             <li className="page">
               <CurrencyBitcoinOutlinedIcon className="icon" />
               <span>Investments</span>
@@ -93,30 +94,31 @@ const Sidebar = () => {
               <span>Resources</span>
             </li>
           </Link> */}
-          <hr />
-          <Link to="/settings" className="link">
-            <li className="page">
-              <SettingsOutlinedIcon className="icon" />
-              <span>Settings</span>
+            <hr />
+            <Link to="/settings" className="link">
+              <li className="page">
+                <SettingsOutlinedIcon className="icon" />
+                <span>Settings</span>
+              </li>
+            </Link>
+            <li className="page" onClick={handleSignOut}>
+              <LogoutOutlinedIcon className="icon" />
+              <span>Log Out</span>
             </li>
-          </Link>
-          <li className="page" onClick={handleSignOut}>
-            <LogoutOutlinedIcon className="icon" />
-            <span>Log Out</span>
-          </li>
-        </ul>
-      </div>
-      <div className="bottom">
-        <hr />
-        <div className="colors">
-          <div className="colorOption"></div>
-          <div className="colorOption"></div>
-          <div className="colorOption"></div>
+          </ul>
         </div>
+        <div className="bottom">
+          <hr />
+          {/* <div className="colors">
+          <div className="colorOption"></div>
+          <div className="colorOption"></div>
+          <div className="colorOption"></div>
+        </div>*/}
+        </div>
+        <footer>
+          <span>mrs.macAlister</span>
+        </footer>
       </div>
-      <footer>
-        <span>mrs.macAlister</span>
-      </footer>
     </div>
   );
 };

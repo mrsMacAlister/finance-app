@@ -95,42 +95,46 @@ const CalendarW = () => {
       <div className="top">
         <div className="title">IMPORTANT DATES</div>
       </div>
-      
-      <div className="dates-list">
-        {importantDay.map((day) => (
-          <div className="items" key={day.id}>
-            <div className="item">
-              <div className="item-date">{day.day}</div>
-              <div className="item-title">{day.description}</div>
+      <div className="bottom">
+        <div className="dates-list">
+          {importantDay.map((day) => (
+            <div className="items" key={day.id}>
+              <div className="item">
+                <div className="item-date">{day.day}</div>
+                <div className="item-title">{day.description}</div>
+              </div>
+              <div
+                className="delete-button"
+                onClick={() => handleDelete(day.id)}
+              >
+                <HighlightOffIcon style={{ height: "15px" }} />
+              </div>
             </div>
-            <div className="delete-button" onClick={() => handleDelete(day.id)}>
-              <HighlightOffIcon style={{ height: "15px" }} />
-            </div>
-          </div>
-        ))}
-      </div>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="date"
-          required="required"
-          id="day"
-          value={day}
-          onChange={(e) => setDay(e.target.value)}
-        />
+          ))}
+        </div>
+        <form onSubmit={handleSubmit}>
+          <input
+            type="date"
+            required="required"
+            id="day"
+            value={day}
+            onChange={(e) => setDay(e.target.value)}
+          />
 
-        <input
-          type="text"
-          //maxLength={15}
-          placeholder="Description"
-          required="required"
-          id="description"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-        />
-        <button type="submit" className="submit-button">
-          +
-        </button>
-      </form>
+          <input
+            type="text"
+            //maxLength={15}
+            placeholder="Description"
+            required="required"
+            id="description"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+          />
+          <button type="submit" className="submit-button">
+            +
+          </button>
+        </form>
+      </div>
     </div>
   );
 };

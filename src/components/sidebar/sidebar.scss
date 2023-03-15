@@ -1,12 +1,13 @@
 .sidebar {
-  background-color: beige;
+  //background-color: beige;
   flex: 1;
   min-height: 100vh;
   position: relative;
+  box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
 
   .link {
     text-decoration: none;
-    color: rgb(0, 56, 0);
+    color: rgb(0, 73, 0);
   }
 
   .top {
@@ -15,6 +16,7 @@
     align-items: center;
     justify-content: center;
     border-bottom: 0.5px solid rgb(226, 226, 226);
+    box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
 
     .logo {
       font-size: 20px;
@@ -22,7 +24,9 @@
       color: rgb(0, 128, 0);
     }
   }
+
   .center {
+    margin-top: 10px;
     padding: 18px 10px;
     color: rgb(0, 56, 0);
 
@@ -35,6 +39,7 @@
         display: flex;
         align-items: center;
         padding: 8px;
+        font-size: 16px;
 
         &:hover {
           background-color: rgba(0, 128, 0, 0.267);
