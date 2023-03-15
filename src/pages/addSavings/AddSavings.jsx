@@ -5,14 +5,7 @@ import Navbar from "../../components/navbar/Navbar";
 //
 import DriveFolderUploadIcon from "@mui/icons-material/DriveFolderUpload";
 import { useEffect, useState } from "react";
-import {
-  addDoc,
-  collection,
-  collectionGroup,
-  doc,
-  serverTimestamp,
-  setDoc,
-} from "firebase/firestore";
+import { addDoc, collection } from "firebase/firestore";
 import { auth, db, storage } from "../../firebase";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { useNavigate } from "react-router-dom";
@@ -20,7 +13,7 @@ import { useNavigate } from "react-router-dom";
 const AddSavings = () => {
   const navigate = useNavigate();
   const [file, setFile] = useState("");
-  const [data, setData] = useState({});
+  //const [data, setData] = useState({});
   const [percentage, setPercentage] = useState(null);
   const [img, setImg] = useState("");
   const [title, setTitle] = useState("");
@@ -35,7 +28,7 @@ const AddSavings = () => {
     setData({ ...data, [id]: value });
   };
 */
-  console.log(data);
+  //console.log(data);
   console.log(file);
 
   const handleAdd = async (event) => {

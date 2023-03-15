@@ -16,12 +16,10 @@ import { collection, query, where, getDocs } from "firebase/firestore";
 import {
   BarChart,
   Bar,
-  Cell,
   XAxis,
   YAxis,
   CartesianGrid,
   Tooltip,
-  Legend,
   ReferenceLine,
   ResponsiveContainer,
 } from "recharts";
@@ -49,7 +47,7 @@ const CustomTooltip = ({ active, data }) => {
 
 const Chart = ({ aspect }) => {
   const [datas, setDatas] = useState([]);
-  const data = [
+  /* const data = [
     { id: 202204, Month: "April", Income: 3800, Outcome: 2560, Balance: 1240 },
     { id: 202205, Month: "May", Income: 4000, Outcome: 2400, Balance: 181 },
     { id: 202206, Month: "June", Income: 5000, Outcome: 2400, Balance: 1850 },
@@ -65,7 +63,7 @@ const Chart = ({ aspect }) => {
     },
     { id: 202302, Month: "Feb", Income: 4000, Outcome: 4400, Balance: -200 },
     { id: 202303, Month: "Mar", Income: 3500, Outcome: 2400, Balance: 1100 },
-  ];
+  ];*/
   /* const gradientOffset = () => {
     const dataMax = Math.max(...datas.map((i) => i.Balance));
     const dataMin = Math.min(...datas.map((i) => i.Balance));
@@ -160,6 +158,7 @@ const Chart = ({ aspect }) => {
                     Month: "March",
                   });
                 }
+                return total;
               },
               { outcome: 0, income: 0, id: uuidv4(), Month: "March" }
             );
@@ -193,6 +192,7 @@ const Chart = ({ aspect }) => {
                     Month: "Feb",
                   });
                 }
+                return total;
               },
               { outcome: 0, income: 0, id: uuidv4(), Month: "Feb" }
             );
@@ -269,6 +269,7 @@ const Chart = ({ aspect }) => {
                     Month: "Dec",
                   });
                 }
+                return total;
               },
               { outcome: 0, income: 0, id: uuidv4(), Month: "Dec" }
             );
@@ -303,6 +304,7 @@ const Chart = ({ aspect }) => {
                     Month: "Nov",
                   });
                 }
+                return total;
               },
               { outcome: 0, income: 0, id: uuidv4(), Month: "Nov" }
             );
@@ -336,6 +338,7 @@ const Chart = ({ aspect }) => {
                     Month: "Oct",
                   });
                 }
+                return total;
               },
               { outcome: 0, income: 0, id: uuidv4(), Month: "Oct" }
             );

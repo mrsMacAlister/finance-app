@@ -3,11 +3,11 @@ import { AppContext } from "../../context/AppContext";
 import "./addExpense.scss";
 import { auth, db } from "../../firebase";
 import { getDocs, addDoc, collection } from "firebase/firestore";
-import { onAuthStateChanged } from "firebase/auth";
+//import { onAuthStateChanged } from "firebase/auth";
 //import moment from "moment";
 
 const AddExpense = () => {
-  const { dispatch } = useContext(AppContext);
+  //const { dispatch } = useContext(AppContext);
   const [cats, setCats] = useState([]);
   const [paymentM, setPaymentM] = useState([]);
   const [day, setDay] = useState("");
@@ -40,7 +40,7 @@ const AddExpense = () => {
         try {
           const userID = authUser.uid;
 
-          const res = await addDoc(collection(db, `${userID}expenses`), {
+          await addDoc(collection(db, `${userID}expenses`), {
             day: day, //moment(day).format("DD/MM/YYYY"),
             description: description,
             category: category,

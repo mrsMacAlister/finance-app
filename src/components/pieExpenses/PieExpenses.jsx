@@ -1,26 +1,21 @@
 import React from "react";
-import { PieChart, Pie, Sector, Cell, ResponsiveContainer } from "recharts";
+import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
+//import {  Sector } from "recharts";
 import { useState, useEffect } from "react";
 import { auth, db } from "../../firebase";
-import {
-  docs,
-  getDocs,
-  onSnapshot,
-  collection,
-  query,
-  where,
-} from "firebase/firestore";
-import { ErrorOutlineSharp } from "@mui/icons-material";
+import { getDocs, collection, query, where } from "firebase/firestore";
+//import {  docs,  onSnapshot,} from "firebase/firestore";
+//import { ErrorOutlineSharp } from "@mui/icons-material";
 
 const PieExpenses = () => {
   const [cats, setCats] = useState([]);
-  const [expenses, setExpenses] = useState([]);
+  /*  const [expenses, setExpenses] = useState([]);
   //const [data, setData] = useState([]);
   const [datas, setDatas] = useState([]);
   const [colors, setColors] = useState([]);
   const [outcome, setOutcome] = useState([]);
   const [income, setIncome] = useState([]);
-
+*/
   useEffect(() => {
     const unsub1 = auth.onAuthStateChanged((authUser) => {
       unsub1();
@@ -36,7 +31,7 @@ const PieExpenses = () => {
 
             let categoryName = [];
             for (const documentSnapshotC of querySnapshotC.docs) {
-              const category = documentSnapshotC.data();
+              //const category = documentSnapshotC.data();
 
               //  console.log("category data()", category);
               categoryName.push({
@@ -57,7 +52,7 @@ const PieExpenses = () => {
                   const querySnapshotE = await getDocs(expenses);
                   let outcome = [];
                   for (const documentSnapshotE of querySnapshotE.docs) {
-                    const expense = documentSnapshotE.data();
+                    //const expense = documentSnapshotE.data();
 
                     //console.log("expense data()", expense);
                     outcome.push({
@@ -97,6 +92,7 @@ const PieExpenses = () => {
                 }
               };
               fetchExpenses();
+              return;
             });
             //console.log("LIST 6", list6);
             /* querySnapshot.forEach((doc) => {
@@ -363,7 +359,7 @@ const PieExpenses = () => {
 
   ////
 
-  //console.log("cats here", cats);
+  console.log("cats here", cats);
 
   //console.log("expenses here", expenses);
   //

@@ -6,7 +6,7 @@ import Chart from "../../components/chart/Chart";
 import Piggybank from "../../components/piggybank/Piggybank";
 import Debt from "../../components/debt/Debt";
 import CalendarW from "../../components/calendarW/CalendarW";
-import InvestmentsW from "../../components/investmentsW/InvestmentsW";
+//import InvestmentsW from "../../components/investmentsW/InvestmentsW";
 
 const Home = () => {
   return (

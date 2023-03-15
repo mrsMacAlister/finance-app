@@ -32,7 +32,7 @@ const Category = () => {
         try {
           const userID = authUser.uid;
 
-          const res = await addDoc(collection(db, `${userID}category`), {
+          await addDoc(collection(db, `${userID}category`), {
             catColor: hex,
             catName: category,
           });

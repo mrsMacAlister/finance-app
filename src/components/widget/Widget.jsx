@@ -1,7 +1,7 @@
 import "../widget/widget.scss";
 import { useEffect, useState } from "react";
 import { auth, db } from "../../firebase";
-import { onAuthStateChanged } from "firebase/auth";
+//import { onAuthStateChanged } from "firebase/auth";
 import { collection, getDocs, query, where } from "firebase/firestore";
 
 const Widget = ({ type }) => {

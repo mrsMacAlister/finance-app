@@ -1,15 +1,8 @@
 import "./addLoan.scss";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
-import { useEffect, useState } from "react";
-import {
-  addDoc,
-  collection,
-  collectionGroup,
-  doc,
-  serverTimestamp,
-  setDoc,
-} from "firebase/firestore";
+import { useState } from "react";
+import { addDoc, collection } from "firebase/firestore";
 import { auth, db } from "../../firebase";
 import { useNavigate } from "react-router-dom";
 
@@ -19,7 +12,7 @@ const AddLoan = () => {
   const [amount, setAmount] = useState("");
   const [paid, setPaid] = useState("");
   const [deadline, setDeadline] = useState("");
-  const [percentage, setPercentage] = useState(null);
+  // const [percentage, setPercentage] = useState(null);
 
   const handleAdd = async (event) => {
     event.preventDefault();
@@ -29,7 +22,7 @@ const AddLoan = () => {
         try {
           const userID = authUser.uid;
 
-          setPercentage();
+          //setPercentage();
           const res = await addDoc(collection(db, `${userID}loans`), {
             title: title,
             amount: amount,

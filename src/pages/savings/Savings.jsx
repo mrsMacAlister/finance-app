@@ -1,12 +1,12 @@
 import "./savings.scss";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
-import SavingsW from "../../components/savingsW/SavingsW";
-import SavingsGoal from "../../components/savingsGoal/SavingsGoal";
+//import SavingsW from "../../components/savingsW/SavingsW";
+//import SavingsGoal from "../../components/savingsGoal/SavingsGoal";
 import { Link } from "react-router-dom";
 
-import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
-import NorthernLights from "../../visuals/northern-lights.jpeg";
+//import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
+//import NorthernLights from "../../visuals/northern-lights.jpeg";
 import DeleteForeverOutlinedIcon from "@mui/icons-material/DeleteForeverOutlined";
 
 import { useState, useEffect } from "react";

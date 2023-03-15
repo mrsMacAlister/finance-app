@@ -2,11 +2,11 @@ import React, { useState, useContext, useEffect } from "react";
 import { AppContext } from "../../context/AppContext";
 import { auth, db } from "../../firebase";
 import { collection, addDoc, getDocs } from "firebase/firestore";
-import { onAuthStateChanged } from "firebase/auth";
+//import { onAuthStateChanged } from "firebase/auth";
 import "./addIncome.scss";
 
 const AddIncome = () => {
-  const { dispatch } = useContext(AppContext);
+  // const { dispatch } = useContext(AppContext);
   const [paymentM, setPaymentM] = useState([]);
   const [day, setDay] = useState("");
   const [description, setDescription] = useState("");

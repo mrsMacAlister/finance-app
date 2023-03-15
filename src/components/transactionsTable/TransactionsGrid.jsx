@@ -4,16 +4,10 @@ import { DataGrid } from "@mui/x-data-grid";
 //import { useDemoData } from "@mui/x-data-grid-generator";
 import { useContext, useEffect, useState } from "react";
 import { AppContext } from "../../context/AppContext";
-import { onAuthStateChanged } from "firebase/auth";
+//import { onAuthStateChanged } from "firebase/auth";
 
 import { auth, db } from "../../firebase";
-import {
-  collection,
-  getDocs,
-  deleteDoc,
-  doc,
-  onSnapshot,
-} from "firebase/firestore";
+import { collection, deleteDoc, doc, onSnapshot } from "firebase/firestore";
 //import { onAuthStateChanged } from "firebase/auth";
 import "./transactionsGrid.scss";
 //import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
@@ -90,7 +84,7 @@ const TransactionsGrid = () => {
       if (authUser) {
         try {
           const userID = authUser.uid;
-         // console.log("HERE AGAIN!", userID);
+          // console.log("HERE AGAIN!", userID);
 
           await deleteDoc(doc(db, `${userID}expenses`, id));
           setData(data.filter((item) => item.id !== id));
