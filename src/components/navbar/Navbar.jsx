@@ -20,19 +20,19 @@ const Navbar = () => {
         <div className="item">
           <DarkModeOutlinedIcon className="icon" />
         </div>
-        <div className="item">
+        {/* <div className="item">
           <FullscreenExitOutlinedIcon className="icon" />
         </div>
         <div className="item">
           <NotificationsNoneOutlinedIcon className="icon" />
           <div className="counter">1</div>
-        </div>
+  </div> */}
         <div className="item">
           <ListOutlinedIcon className="icon" />
         </div>
-        <div className="item">
+        {/*<div className="item">
           <img src={avatar} alt="" className="avatar" />
-        </div>
+</div>*/}
       </div>
     </div>
   );
