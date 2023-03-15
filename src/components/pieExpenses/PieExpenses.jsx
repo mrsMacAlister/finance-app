@@ -92,7 +92,7 @@ const PieExpenses = () => {
                 }
               };
               fetchExpenses();
-              return;
+              return 1;
             });
             //console.log("LIST 6", list6);
             /* querySnapshot.forEach((doc) => {

@@ -1,5 +1,5 @@
-import React, { useState, useContext, useEffect } from "react";
-import { AppContext } from "../../context/AppContext";
+import React, { useState, useEffect } from "react";
+//import { AppContext } from "../../context/AppContext";
 import "./addExpense.scss";
 import { auth, db } from "../../firebase";
 import { getDocs, addDoc, collection } from "firebase/firestore";
