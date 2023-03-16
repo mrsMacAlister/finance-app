@@ -44,6 +44,10 @@
           display: flex;
           align-items: center;
         }
+
+        .delete-button:hover {
+          cursor: pointer;
+        }
       }
     }
 
@@ -60,6 +64,10 @@
       button {
         margin: 0;
         padding: 1px 5px;
+      }
+
+      button:hover {
+        cursor: pointer;
       }
     }
   }

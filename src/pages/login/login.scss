@@ -6,39 +6,53 @@
   justify-content: center;
 
   .intro {
-    .accounts {
+    max-width: 600px;
+
+    h2 {
       margin: 20px;
-      display: flex;
-      justify-content: space-between;
+    }
+
+    h2,
+    p {
+      text-align: center;
+    }
+
+    .account {
+      margin: 20px;
     }
   }
 
-  form {
+  .forms {
     display: flex;
-    flex-direction: column;
-    align-items: center;
 
-    input {
-      width: 200px;
-      height: 30px;
-      margin: 10px;
-    }
+    form {
+      margin: 50px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
 
-    button {
-      width: 208px;
-      height: 30px;
-      margin: 10px;
-      border: none;
-      border-radius: 4px;
-      background-color: purple;
-      color: white;
-      font-weight: bold;
-      cursor: pointer;
-    }
+      input {
+        width: 200px;
+        height: 30px;
+        margin: 10px;
+      }
 
-    span {
-      font-size: 12px;
-      color: red;
+      button {
+        width: 208px;
+        height: 30px;
+        margin: 10px;
+        border: none;
+        border-radius: 4px;
+        background-color: purple;
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+      }
+
+      span {
+        font-size: 12px;
+        color: red;
+      }
     }
   }
 }

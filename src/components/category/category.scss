@@ -81,23 +81,11 @@
             display: flex;
             align-items: center;
           }
+          .delete-button:hover {
+            cursor: pointer;
+          }
         }
       }
     }
   }
-  /*
-  .title {
-    font-size: 13px;
-    font-weight: bold;
-  }
-
-  .amount {
-    font-size: 18px;
-    font-weight: bold;
-    padding: 10px;
-  }
-
-  .goal {
-    font-size: 13px;
-  }*/
 }
