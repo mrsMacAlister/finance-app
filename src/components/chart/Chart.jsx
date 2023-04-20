@@ -125,12 +125,48 @@ const Chart = ({ aspect }) => {
           }
 */
           try {
+            let aprilDoc = [];
             let marchDoc = [];
             let febDoc = [];
             let janDoc = [];
             let decDoc = [];
             let novDoc = [];
-            let octDoc = [];
+            // let octDoc = [];
+
+            //april
+            const aprilQuery = await getDocs(
+              query(
+                collection(db, `${userID}expenses`),
+                where("day", "<=", "2023-04-30"),
+                where("day", ">", "2023-03-31")
+              )
+            );
+            aprilQuery.forEach((doc) => {
+              const outcm = doc.data().outcome;
+              const incm = doc.data().income;
+              aprilDoc.push({
+                outcome: Number(outcm),
+                income: Number(incm),
+              });
+            });
+            const aprilResults = aprilDoc.reduce(
+              (total, amount) => {
+                if (amount.outcome != null) {
+                  return (total = {
+                    outcome: total.outcome + amount.outcome,
+                    income: total.income + amount.income,
+                    id: uuidv4(),
+                    Month: "April",
+                  });
+                }
+                return total;
+              },
+              { outcome: 0, income: 0, id: uuidv4(), Month: "April" }
+            );
+            const aprilDt = {
+              ...aprilResults,
+              Balance: aprilResults.income - aprilResults.outcome,
+            };
 
             //march
             const marchQuery = await getDocs(
@@ -313,7 +349,7 @@ const Chart = ({ aspect }) => {
               Balance: novResults.income - novResults.outcome,
             };
             //oct
-            const octQuery = await getDocs(
+            /*   const octQuery = await getDocs(
               query(
                 collection(db, `${userID}expenses`),
                 where("day", "<=", "2022-10-31"),
@@ -346,9 +382,9 @@ const Chart = ({ aspect }) => {
               ...octResults,
               Balance: octResults.income - octResults.outcome,
             };
-
+*/
             //
-            setDatas([octDt, novDt, decDt, janDt, febDt, marchDt]);
+            setDatas([novDt, decDt, janDt, febDt, marchDt, aprilDt]);
           } catch (err) {
             console.log(err);
           }
