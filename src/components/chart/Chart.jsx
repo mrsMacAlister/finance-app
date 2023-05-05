@@ -4,15 +4,7 @@ import { useEffect, useState } from "react";
 import { auth, db } from "../../firebase";
 import { collection, query, where, getDocs } from "firebase/firestore";
 //import moment from "moment/moment";
-/*import {
-  AreaChart,
-  Area,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  ResponsiveContainer,
-} from "recharts";*/
+/*import {  AreaChart,  Area,  XAxis,  YAxis,  CartesianGrid,  Tooltip,  ResponsiveContainer } from "recharts";*/
 import {
   BarChart,
   Bar,
@@ -125,13 +117,47 @@ const Chart = ({ aspect }) => {
           }
 */
           try {
+            let mayDoc = [];
             let aprilDoc = [];
             let marchDoc = [];
             let febDoc = [];
             let janDoc = [];
             let decDoc = [];
-            let novDoc = [];
-            // let octDoc = [];
+
+            //May
+            const mayQuery = await getDocs(
+              query(
+                collection(db, `${userID}expenses`),
+                where("day", "<=", "2023-05-31"),
+                where("day", ">", "2023-04-30")
+              )
+            );
+            mayQuery.forEach((doc) => {
+              const outcm = doc.data().outcome;
+              const incm = doc.data().income;
+              mayDoc.push({
+                outcome: Number(outcm),
+                income: Number(incm),
+              });
+            });
+            const mayResults = mayDoc.reduce(
+              (total, amount) => {
+                if (amount.outcome != null) {
+                  return (total = {
+                    outcome: total.outcome + amount.outcome,
+                    income: total.income + amount.income,
+                    id: uuidv4(),
+                    Month: "May",
+                  });
+                }
+                return total;
+              },
+              { outcome: 0, income: 0, id: uuidv4(), Month: "May" }
+            );
+            const mayDt = {
+              ...mayResults,
+              Balance: mayResults.income - mayResults.outcome,
+            };
 
             //april
             const aprilQuery = await getDocs(
@@ -314,77 +340,9 @@ const Chart = ({ aspect }) => {
               ...decResults,
               Balance: decResults.income - decResults.outcome,
             };
-            //nov
-            const novQuery = await getDocs(
-              query(
-                collection(db, `${userID}expenses`),
-                where("day", "<=", "2022-11-30"),
-                where("day", ">", "2022-10-31")
-              )
-            );
-            novQuery.forEach((doc) => {
-              const outcm = doc.data().outcome;
-              const incm = doc.data().income;
-              novDoc.push({
-                outcome: Number(outcm),
-                income: Number(incm),
-              });
-            });
-            const novResults = novDoc.reduce(
-              (total, amount) => {
-                if (amount.outcome != null) {
-                  return (total = {
-                    outcome: total.outcome + amount.outcome,
-                    income: total.income + amount.income,
-                    id: uuidv4(),
-                    Month: "Nov",
-                  });
-                }
-                return total;
-              },
-              { outcome: 0, income: 0, id: uuidv4(), Month: "Nov" }
-            );
-            const novDt = {
-              ...novResults,
-              Balance: novResults.income - novResults.outcome,
-            };
-            //oct
-            /*   const octQuery = await getDocs(
-              query(
-                collection(db, `${userID}expenses`),
-                where("day", "<=", "2022-10-31"),
-                where("day", ">", "2022-09-30")
-              )
-            );
-            octQuery.forEach((doc) => {
-              const outcm = doc.data().outcome;
-              const incm = doc.data().income;
-              octDoc.push({
-                outcome: Number(outcm),
-                income: Number(incm),
-              });
-            });
-            const octResults = octDoc.reduce(
-              (total, amount) => {
-                if (amount.outcome != null) {
-                  return (total = {
-                    outcome: total.outcome + amount.outcome,
-                    income: total.income + amount.income,
-                    id: uuidv4(),
-                    Month: "Oct",
-                  });
-                }
-                return total;
-              },
-              { outcome: 0, income: 0, id: uuidv4(), Month: "Oct" }
-            );
-            const octDt = {
-              ...octResults,
-              Balance: octResults.income - octResults.outcome,
-            };
-*/
+
             //
-            setDatas([novDt, decDt, janDt, febDt, marchDt, aprilDt]);
+            setDatas([decDt, janDt, febDt, marchDt, aprilDt, mayDt]);
           } catch (err) {
             console.log(err);
           }
