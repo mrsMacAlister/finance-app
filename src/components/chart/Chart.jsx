@@ -38,6 +38,7 @@ const CustomTooltip = ({ active, data }) => {
 */
 
 const Chart = ({ aspect }) => {
+  const [monthly, setMonthly] = useState([]);
   const [datas, setDatas] = useState([]);
   /* const data = [
     { id: 202204, Month: "April", Income: 3800, Outcome: 2560, Balance: 1240 },
@@ -72,17 +73,33 @@ const Chart = ({ aspect }) => {
 
   const off = gradientOffset();*/
 
+  const months = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+
   useEffect(() => {
     const unsub1 = auth.onAuthStateChanged((authUser) => {
       unsub1();
       if (authUser) {
         const userID = authUser.uid;
         const fetchData = async () => {
-          /* const today = new Date(2023, 2, 8);
-          const thisMonth = new Date(new Date().setMonth(today.getMonth())); //0-11, 2 = march
+          //add "index" to the above object about month info
+          const today = new Date();
+          /* const thisMonth = new Date(new Date().setMonth(today.getMonth())); //0-11, 2 = march
           const lastMonth = new Date(new Date().setMonth(today.getMonth() - 1));
-          const prevMonth = new Date(new Date().setMonth(today.getMonth() - 2));
-          console.log(
+          const prevMonth = new Date(new Date().setMonth(today.getMonth() - 2));*/
+          /*console.log(
             "TODAY IS: ",
             today,
             "THIS MONTH IS: ",
@@ -92,10 +109,68 @@ const Chart = ({ aspect }) => {
             "PREVIOUS MONTH IS: ",
             prevMonth
           );
+*/
 
           //today = moment(today).format("L");
           console.log("TODAY IS", today);
-*/
+
+          //CONTINUE HERE//
+          /*
+          const d = new Date();
+          let month = d.getMonth();
+          let monthName = months[month];
+
+          console.log("JUST THE MONTH --> ", month, monthName);
+          //WHERE() IT .INDLUCES() + FOR LOOP?? .REDUCE(), .FILTER()
+          //if currentMonth = -1, then month is 11 :3 lol
+          for (let i = 0; i < 5; i++) {
+            let currentMonth = month - i;
+
+            console.log("test ", currentMonth, i);
+
+            try {
+              let monthlyDoc = [];
+
+              const monthlyQuery = await getDocs(
+                query(
+                  collection(db, `${userID}expenses`),
+                  where("year", "==", "2023")
+                )
+              );
+              monthlyQuery.forEach((doc) => {
+                const outcm = doc.data().outcome;
+                const incm = doc.data().income;
+                monthlyDoc.push({
+                  outcome: Number(outcm),
+                  income: Number(incm),
+                });
+              });
+              const monthlyResults = monthlyDoc.reduce(
+                (total, amount) => {
+                  if (amount.outcome != null) {
+                    return (total = {
+                      outcome: total.outcome + amount.outcome,
+                      income: total.income + amount.income,
+                      id: uuidv4(),
+                      Month: months[currentMonth],
+                    });
+                  }
+                  return total;
+                },
+                { outcome: 0, income: 0, id: uuidv4(), Month: "May" }
+              );
+              const monthlyDt = {
+                ...monthlyResults,
+                Balance: monthlyResults.income - monthlyResults.outcome,
+              };
+
+              setMonthly([monthlyDt, ...monthly]);
+            } catch (err) {
+              console.log("error occured: ", err);
+            }
+          }*/
+
+          
           //
           /*     const marchQ = query(
             collection(db, `${userID}expenses`),
@@ -356,6 +431,7 @@ const Chart = ({ aspect }) => {
   }, []);
 
   console.log("DATAs", datas, "Datas balance", datas.Balance);
+  console.log("MONTHLY DATA ", monthly, "Monthly balance: ", monthly.Balance);
   return (
     <div className="chart">
       <div className="title">CHART</div>
