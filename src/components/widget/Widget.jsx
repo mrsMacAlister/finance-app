@@ -49,6 +49,10 @@ const Widget = ({ type }) => {
       unsub();
       if (authUser) {
         try {
+          let currentMonth = new Date().getMonth();
+          console.log("current month: ", currentMonth);
+          let currentYear = new Date().getFullYear();
+          console.log("current year: ", currentYear);
           const userID = authUser.uid;
           const fetchData = async () => {
             let outcomeList = [];
@@ -56,6 +60,8 @@ const Widget = ({ type }) => {
 
             const outcomeQuery = query(
               collection(db, `${userID}expenses`),
+              where("month", "array-contains", currentMonth),
+              where("year", "array-contains-any", [currentYear]),
               where("outcome", "!=", null)
             );
 
@@ -75,6 +81,8 @@ const Widget = ({ type }) => {
 
             const incomeQuery = query(
               collection(db, `${userID}expenses`),
+              where("month", "array-contains-any", [currentMonth]),
+              where("year", "==", currentYear),
               where("income", "!=", null)
             );
 
@@ -102,7 +110,7 @@ const Widget = ({ type }) => {
   return (
     <div className="widget">
       <div className="title">{data.title}</div>
-      <div className="amount">{data.amount} €</div>
+      <div className="amount">{data.amount ? data.amount : 0} €</div>
       <div className="goal">Goal: {data.goal}</div>
     </div>
   );

@@ -41,9 +41,10 @@ const AddExpense = () => {
           const userID = authUser.uid;
 
           await addDoc(collection(db, `${userID}expenses`), {
-            day: moment(day).format("MMM Do YY"), //moment(day).format("DD/MM/YYYY"),
-            imonth: moment(day).format("M") - 1,
-            year: moment(day).format("YYYY"),
+            day: moment(day).format("DD/MM/YYYY"), // moment(day).format("MMM Do YY"), //moment(day).format("DD/MM/YYYY"),
+            month: moment(day).format("M") - 1,
+            year: Number(moment(day).format("YYYY")),
+            /*mmyy: ,*/
             description: description,
             category: category,
             catColor: catColor,
