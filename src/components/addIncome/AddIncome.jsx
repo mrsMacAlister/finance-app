@@ -4,6 +4,7 @@ import { auth, db } from "../../firebase";
 import { collection, addDoc, getDocs } from "firebase/firestore";
 //import { onAuthStateChanged } from "firebase/auth";
 import "./addIncome.scss";
+import moment from "moment";
 
 const AddIncome = () => {
   // const { dispatch } = useContext(AppContext);
@@ -33,7 +34,11 @@ const AddIncome = () => {
 
           const res = await addDoc(collection(db, `${userID}expenses`), {
             //id: uuidv4(),
-            day: day,
+            //day: day,
+            day: moment(day).format("DD/MM/YYYY"), // moment(day).format("MMM Do YY"), //moment(day).format("DD/MM/YYYY"),
+            month: moment(day).format("M") - 1,
+            year: Number(moment(day).format("YYYY")),
+            mmyy: moment(day).format("MMM YYYY"),
             description: description,
             category: null,
             method: method,

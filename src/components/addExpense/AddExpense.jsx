@@ -44,7 +44,7 @@ const AddExpense = () => {
             day: moment(day).format("DD/MM/YYYY"), // moment(day).format("MMM Do YY"), //moment(day).format("DD/MM/YYYY"),
             month: moment(day).format("M") - 1,
             year: Number(moment(day).format("YYYY")),
-            /*mmyy: ,*/
+            mmyy: moment(day).format("MMM YYYY"),
             description: description,
             category: category,
             catColor: catColor,

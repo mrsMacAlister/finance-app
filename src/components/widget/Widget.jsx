@@ -49,27 +49,53 @@ const Widget = ({ type }) => {
       unsub();
       if (authUser) {
         try {
+          const months = [
+            "Jan",
+            "Feb",
+            "Mar",
+            "Apr",
+            "May",
+            "Jun",
+            "Jul",
+            "Aug",
+            "Sep",
+            "Oct",
+            "Nov",
+            "Dec",
+          ];
           let currentMonth = new Date().getMonth();
           console.log("current month: ", currentMonth);
           let currentYear = new Date().getFullYear();
           console.log("current year: ", currentYear);
+
+          let todayMonth = months[currentMonth];
+          console.log("today month = ", todayMonth);
+
           const userID = authUser.uid;
           const fetchData = async () => {
             let outcomeList = [];
             let incomeList = [];
 
-            const outcomeQuery = query(
+            const thisMonthQuery = query(
               collection(db, `${userID}expenses`),
-              where("month", "array-contains", currentMonth),
-              where("year", "array-contains-any", [currentYear]),
-              where("outcome", "!=", null)
+              where("mmyy", "array-contains", [todayMonth, currentYear])
+              //where("year", "array-contains", currentYear)
             );
 
-            const outcomeQ = await getDocs(outcomeQuery);
+            /*      const outcomeQuery = query(
+              thisMonthQuery,
+              where("outcome", "!=", null)
+            );*/
+
+            const outcomeQ = await getDocs(thisMonthQuery);
 
             outcomeQ.forEach((doc) => {
-              const outc = { outcome: doc.data().outcome };
-              outcomeList.push(parseFloat(outc.outcome, 10));
+              if (outcome) {
+                const outc = { outcome: doc.data().outcome };
+                outcomeList.push(parseFloat(outc.outcome, 10));
+                console.log("outcome is not null");
+                return;
+              }
             });
             //console.log("outcome list", outcomeList);
             const totalOutcome = outcomeList.reduce((total, item) => {
@@ -79,18 +105,19 @@ const Widget = ({ type }) => {
             //console.log("Total OUTCOME", totalOutcome);
             setOutcome(totalOutcome);
 
-            const incomeQuery = query(
-              collection(db, `${userID}expenses`),
-              where("month", "array-contains-any", [currentMonth]),
-              where("year", "==", currentYear),
+            /*   const incomeQuery = query(
+              thisMonthQuery,
               where("income", "!=", null)
-            );
+            );*/
 
-            const incomeQ = await getDocs(incomeQuery);
+            const incomeQ = await getDocs(thisMonthQuery);
 
             incomeQ.forEach((doc) => {
-              const inc = { income: doc.data().income };
-              incomeList.push(parseFloat(inc.income, 10));
+              if (income) {
+                const inc = { income: doc.data().income };
+                incomeList.push(parseFloat(inc.income, 10));
+                return incomeList;
+              }
             });
             //console.log("outcome list", outcomeList);
             const totalIncome = incomeList.reduce((total, item) => {
