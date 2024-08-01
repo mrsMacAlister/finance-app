@@ -72,6 +72,15 @@
       margin: 6px 0 5px 0;
     }
 
+    .notice {
+      background-color: rgba(10, 199, 10, 0.692);
+      margin-top: 25px;
+      border-radius: 10px;
+      padding: 25px 10px;
+      text-align: center;
+      font-weight: bold;
+    }
+
     .colors {
       display: flex;
       align-items: center;
